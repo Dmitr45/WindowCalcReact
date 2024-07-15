@@ -1,0 +1,52 @@
+.calcPayment {
+    width: 100%;
+    margin-top: 50px;
+    background: #0066cc;
+    border-radius: 6px;
+    color: #fff;
+    padding: 30px;
+    
+    .calcPaymentContent {
+      display: flex;
+      div {
+        margin-right: 30px;
+      }
+      p {
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+      span {
+        font-size: 20px;
+      }
+      .paymentAll {
+        font-size: 34px;
+      }
+    }
+    .calcPaymentBtn {
+      display: flex;
+      margin-top: 20px;
+
+      div {
+        &:hover {
+          cursor: pointer;
+          border-color: #ffe400;
+          background-color: #ffe400;
+        }
+        background-color: #ffd200;
+        color: #000;
+        padding: 0 20px;
+        border-radius: 4px;
+        height: 46px;
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+        img {
+          width: 18px;
+          margin-right: 10px;
+        }
+        span {
+          font-size: 15px;
+        }
+      }
+    }
+  }

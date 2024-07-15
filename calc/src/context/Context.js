@@ -1,1 +1,3 @@
-const Context = React.createContext(null);
+import { createContext } from 'react';
+
+const Context = createContext(null);

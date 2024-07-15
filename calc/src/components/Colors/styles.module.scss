@@ -1,0 +1,75 @@
+.temp {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        .item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          width: calc(33% - 10px);
+          cursor: pointer;
+          img {
+            width: 10px;
+          }
+          .red {
+            background-color: #ffddd4;
+            display: flex;
+            flex-grow: 1;
+  
+            height: 6px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+          }
+          .redBold {
+            background-color: #f75;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 10px;
+
+            width: 50%;
+            height: 100%;
+          }
+          .yellow {
+            background-color: #fff0c6;
+            display: flex;
+            flex-grow: 1;
+  
+            height: 6px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+          }
+          .yellowBold {
+            background-color: #ffd33a;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 10px;
+
+            width: 50%;
+            height: 100%;
+          }
+          .green {
+            background-color: #e9f6d5;
+            display: flex;
+            flex-grow: 1;
+  
+            height: 6px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+          }
+          .greenBold {
+            background-color: #8edc;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 10px;
+
+            width: 50%;
+            height: 100%;
+          }
+        }
+      }
