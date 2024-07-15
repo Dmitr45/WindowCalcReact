@@ -1,0 +1,43 @@
+.main{
+        height: 50px;
+        width: 50px;
+        pointer-events: none;
+      }
+      
+      .AppHeader {
+        background-color: #282c34;
+        max-height: 50px;
+        width:100%;
+        display: flex;
+        flex-direction: row;
+        align-items: right;
+        justify-content: right;
+        padding-right: 30px;
+        font-size: calc(10px + 2vmin);
+        color: white;
+    
+    
+        a{
+          color: #61DAFB;
+          text-decoration: none;
+          line-height: 50px;
+        }
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+    .divAppLogo {
+    width: 50px;
+    height: 50px;
+    animation: divAppLogo-spin infinite 20s linear;
+    }
+  }
+  
+  @keyframes divAppLogo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
