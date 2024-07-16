@@ -1,0 +1,64 @@
+.inputForm input::-webkit-outer-spin-button,
+.inputForm input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.inputForm input[type=checkbox] {
+  display: none;
+}
+.inputForm input[type=checkbox]:checked + label::before {
+  background-color: #fff;
+  background-image: url("./check.png");
+  background-size: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.inputForm input[type=checkbox] + label::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border-radius: 4px;
+  border: 1px solid rgba(201, 201, 201, 0.8);
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.inputForm .selectSize {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.inputForm .selectSize .L {
+  width: calc(50% - 20px);
+  padding-bottom: 15px;
+}
+.inputForm .selectSize .L p {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+.inputForm .selectSize .R {
+  width: calc(50% - 20px);
+  padding-bottom: 15px;
+}
+.inputForm .selectSize .R p {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+.inputForm .selectSize .selectDiv {
+  border: 1px solid rgba(201, 201, 201, 0.8);
+  border-radius: 4px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+.inputForm .selectSize .selectNum {
+  border: none;
+  overflow: hidden;
+  outline: none;
+}

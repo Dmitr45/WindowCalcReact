@@ -1,0 +1,76 @@
+
+
+.inputForm{
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="checkbox"] {
+  display: none;
+}
+input[type="checkbox"]:checked + label::before {
+  background-color: #fff;
+  background-image: url("./check.png");
+  background-size: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+input[type="checkbox"] + label::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border-radius: 4px;
+  border: 1px solid rgba(201, 201, 201, 0.8);
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.selectSize{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    
+    .L{
+        width: calc(50% - 20px);
+        padding-bottom: 15px;
+        p {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            }
+    }
+    .R{
+        width: calc(50% - 20px);
+        padding-bottom: 15px;
+        p {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            }
+
+    }
+    .selectDiv{
+        border: 1px solid rgba(201, 201, 201, 0.8);
+        border-radius: 4px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+    .selectNum{
+        border: none;
+        overflow: hidden;
+        outline: none;
+    }
+    input{}
+}
+
+
+}
+
