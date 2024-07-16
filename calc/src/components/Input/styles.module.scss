@@ -68,9 +68,19 @@ input[type="checkbox"] + label::before {
         overflow: hidden;
         outline: none;
     }
-    input{}
+
 }
-
-
+    select{
+      width: 100%;
+      height: 100%;
+      border: none;
+      & option {
+        display: block;
+        padding-top: 30px;
+        border: none;
+        height:  30px;
+        line-height: 30px;
+      }
+    }
 }
 

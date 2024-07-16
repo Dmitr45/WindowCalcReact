@@ -1,5 +1,5 @@
 import { createContext, useState, useCallback } from 'react';
-import {profiles} from './DataBase.js';
+
 
 
 
@@ -17,8 +17,14 @@ export const useCreateAppContext = function(props) {
 
 
 
-    const [profile, setProfile] = useState(props.profile ||  profiles[0]);  // Профиль окна
+    const [profile, setProfile] = useState(props.profile ||  "Reynaers");  // Профиль окна "Reynaers" || "Alutech" 
     const toggleProfile = useCallback((num)=> {setProfile(num)});
+
+    const [subReynaers, setSubReynaers] = useState(props.subReynaers ||  "Masterline 8");  // Профиль окна "Masterline 8" || Slim Line 38 
+    const toggleSubReynaers  = useCallback((num)=> {setSubReynaers(num)});
+
+    const [subAlutech, setSubAlutech] = useState(props.subAlutech ||  "W62");  // Профиль окна "W62" || W72 
+    const toggleSubAlutech  = useCallback((num)=> {setSubAlutech(num)});
 
 
     
@@ -28,8 +34,8 @@ export const useCreateAppContext = function(props) {
         widthWindow, toggleWidthWindow, // Размер окна [высота, ширина], мм
         heightWindow, toggleHeightWindow,
         profile, toggleProfile, // Профиль окна
-
-
+        subReynaers, toggleSubReynaers, // Субпрофили "Reynaers"
+        subAlutech, toggleSubAlutech, // Субпрофили "Alutech"
 
 
 
