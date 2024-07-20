@@ -2,12 +2,13 @@
   position: relative;
   margin-left: 15px;
   height: 350px;
+  width: 450px;
   display: flex;
   gap: 30px;
   align-items: center;
 }
 .calcImgWrap .calcRangeLeft {
-  transform: rotate(90deg);
+  transform: rotate(-90deg);
 }
 .calcImgWrap .calcRangeLeft .touchText {
   width: 70px;
@@ -21,6 +22,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+}
+@media (max-width: 640px) {
+  .calcImgWrap .calcImg {
+    display: block;
+    width: 450px;
+  }
 }
 .calcImgWrap .calcImg .calcImgItem {
   height: auto;

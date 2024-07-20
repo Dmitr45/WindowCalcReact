@@ -8,16 +8,6 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 input[type="checkbox"] {
-  display: none;
-}
-input[type="checkbox"]:checked + label::before {
-  background-color: #fff;
-  background-image: url("./check.png");
-  background-size: 80%;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-input[type="checkbox"] + label::before {
   content: "";
   display: inline-block;
   width: 25px;
@@ -28,6 +18,14 @@ input[type="checkbox"] + label::before {
   cursor: pointer;
   margin-right: 10px;
 }
+input[type="checkbox"]:checked {
+  background-color: #fff;
+  background-image: url("./check.png");
+  background-size: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 
 .selectSize{
     display: flex;

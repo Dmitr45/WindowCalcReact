@@ -15,16 +15,21 @@ return (
     <div className={styles.calc}>
         <AppContextProvider>
         <div className={styles.container}>
-                <div class={styles.left}>
+                <div class={styles.div}>
                     <Window/>
-                    <Payment/>
+                    
                 </div>
-                <div class={styles.right}>
+                <div class={styles.div}>
                     <CalcNav/>
                     <Input/>
                     <Colors/>
                 </div>
+                <div class={styles.div}>
+                    <Payment/>    
+                </div>
+
         </div>
+
         </AppContextProvider>
     </div>
 )};

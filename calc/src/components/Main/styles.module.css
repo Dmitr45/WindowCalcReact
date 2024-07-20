@@ -1,8 +1,33 @@
 .container {
-  width: 90%;
+  margin: 0 auto;
   margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 450px;
+  max-width: 450px;
+  min-width: 450px;
   gap: 30px;
+}
+@media (max-width: 1500px) {
+  .container {
+    display: block;
+    width: 450px;
+  }
+}
+@media (max-width: 640px) {
+  .container {
+    display: block;
+    width: 450px;
+    max-width: 450px;
+  }
+}
+@media (max-width: 480px) {
+  .container {
+    display: block;
+    width: 450px;
+    max-width: 450px;
+  }
 }
 
 .calc {
@@ -10,6 +35,7 @@
   overflow-x: hidden !important;
 }
 
-.right {
+.div {
+  margin: 40px auto;
   width: 100%;
 }

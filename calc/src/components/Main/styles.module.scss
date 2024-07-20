@@ -1,16 +1,36 @@
     .container {
-        width: 90%;
+        margin: 0 auto;
         margin: 0 auto;
         display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        width: 450px;
+        max-width: 450px;
+        min-width: 450px;
         gap: 30px;
+        @media (max-width: 1500px) {
+            display: block;
+            width: 450px;
+          }
+          @media (max-width: 640px) {
+            display: block;
+            width: 450px;
+            max-width: 450px;
+          }
+        @media (max-width: 480px) {
+            display: block;
+            width: 450px;
+            max-width: 450px;
+          }
+        
+
     }
     .calc {
         padding: 30px 0;
         overflow-x: hidden !important;
         }
-    .left{
-        
-    }
-    .right {
-        width: 100%;
+
+    .div {
+        margin: 40px auto;
+        width: 100%
     }
