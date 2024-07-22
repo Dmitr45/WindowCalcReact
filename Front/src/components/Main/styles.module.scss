@@ -12,12 +12,15 @@
           }
           @media (max-width: 1200px) {
             display: block;
+            width: 800px;
+          }
+          @media (max-width: 800px) {
+            display: block;
             width: 640px;
           }
           @media (max-width: 640px) {
             display: block;
             width: 480px;
-            max-width: 480px;
           }
         @media (max-width: 480px) {
             display: block;
@@ -34,5 +37,17 @@
 
     .div {
         margin: 40px auto;
-        width: 45%
+
+        @media (max-width: 1500px) {
+          width: 100%;
+        }
+        @media (max-width: 1200px) {
+          width: 100%;
+        }
+        @media (max-width: 800px) {
+          width: 100%;
+        }
+        @media (max-width: 640px) {
+          width: 100%;
+        }
     }

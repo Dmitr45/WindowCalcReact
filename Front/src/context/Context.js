@@ -9,6 +9,8 @@ import { createContext, useState, useCallback, useRef, useEffect } from 'react';
 
 export const useCreateAppContext = function(props) {
 
+
+
 // Входные данные: ============================================================================================================
 const maxWindowSash = 4; //  Максимальное кол-во створок
 const maxWidthSash = 800; // Макс ширина створки
