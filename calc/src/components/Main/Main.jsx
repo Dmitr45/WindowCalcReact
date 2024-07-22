@@ -17,7 +17,7 @@ return (
         <div className={styles.container}>
                 <div class={styles.div}>
                     <Window/>
-                    
+                    <Payment/> 
                 </div>
                 <div class={styles.div}>
                     <CalcNav/>
@@ -25,7 +25,7 @@ return (
                     <Colors/>
                 </div>
                 <div class={styles.div}>
-                    <Payment/>    
+   
                 </div>
 
         </div>

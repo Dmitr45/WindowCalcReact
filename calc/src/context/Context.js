@@ -1,5 +1,5 @@
 import { createContext, useState, useCallback, useRef, useEffect } from 'react';
-import axios from "axios";
+// import axios from "axios";
 
 
 
@@ -96,19 +96,19 @@ const optionsArr = [
     }
 ];
 
-const [DATA, setData] = useState();
-useEffect(()=>{
-axios
-  .get("./DATA.json")
-  .then((recpons) => setData(recpons.data))  
-  .then(() => console.log(DATA))
-  .then(()=>{
-    maxWindowSash = DATA.maxWindowSash
+// const [DATA, setData] = useState();
+// useEffect(()=>{
+// axios
+//   .get("./DATA.json")
+//   .then((recpons) => setData(recpons.data))  
+//   .then(() => console.log(DATA))
+//   .then(()=>{
+//     maxWindowSash = DATA.maxWindowSash
 
-  })
-  .catch((err) => console.log(err));
+//   })
+//   .catch((err) => console.log(err));
 
-},[])
+// },[])
 
 
 

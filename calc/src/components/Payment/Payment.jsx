@@ -34,8 +34,38 @@ let {paint, togglePaint, multicolor, toggleMulticolor,
     colorArr}= useAppContext();// Выбранная краска}
 
 
+let [PaymentHide, setPaymentHide] = useState(true);
+let PaymentOffer =  <div className={styles.PaymentBtn}>
+                        <div onClick={()=>setPaymentHide(false)}><span >Получить смету</span></div>
+                        <div onClick={()=>setPaymentHide(false)}><span >Консультация</span></div>
+                    </div>;
+let PaymentSend =   <div className={styles.userForm}>
+                        <form action="" method="post">
+                                <input type="text" id="name" name="name" placeholder="Your name.." required/><p/>
+                                <input type="email" id="email" name="email" placeholder="Your email.." required/><p/>
+                                <div className={styles.PaymentBtn}>
+                                    <div type="submit" value="Register">Отправить заявку</div>
+                                </div>
+                        </form>
+                                        <ul>
+                                            Секций: {typeWindow} <p/>
+                                            Ширина: {widthWindow} мм<p/>
+                                            Высота: {heightWindow} мм<p/>
+                                            Профиль: {profile.name}<p/>
+                                            Стекло: {glass.name} <p/>
+                                            Монтаж: {montage? "Да": "Нет"} <p/>
+                                            Доставка: {delivery? "Да": "Нет"} <p/>
+                                            Отлив: {option0? "Да": "Нет"} <p/>
+                                            Подоконник: {option1? "Да": "Нет"} <p/>
+                                            Маскитная сетка: {option2? "Да": "Нет"} <p/>
+                                        </ul>
+                    </div>;
 
+let [PaymentBtn, setPaymentBtn] = useState("");
+useEffect(()=>{
+    PaymentHide ? setPaymentBtn(PaymentOffer) : setPaymentBtn(PaymentSend);
 
+},[PaymentHide])
 
 
 let [BaseCost, setBaseCost] = useState(0);
@@ -53,10 +83,14 @@ setBaseCost(
 
 return (
 <div className={styles.calcPayment}>
-            <div className={styles.calcPaymentContent}>
                 <div>
                     <p>Общая стоимость:</p>
                     <span className={styles.paymentAll}>{BaseCost} ₽</span>
+                </div>
+            <div className={styles.calcPaymentContent}>
+                <div>
+                    <p>Изделие:</p>
+                    <span >{Math.round((widthWindow/1000)*(heightWindow/1000)* ( profilesArr.profilesArr[profile.id].subProf[subProfile.id].cost + colorArr[multicolor.id].col[paint.id].cost + costGlass[glass.id] + (hardening ? costHardenin: 0) + (hiddHardware ? costhiddHardware: 0)))} ₽</span>
                 </div>
                 <div>
                     <p>Опции:</p>
@@ -65,7 +99,7 @@ return (
                                 (option1 ? Math.round(optionsArr[1].cost*widthWindow/1000):0) // Подоконник
                                 +
                                 (option2 ? Math.round(optionsArr[2].cost):0) // Подоконник
-                            }
+                            } ₽
                     </span>
                 </div>
                 <div>
@@ -77,14 +111,6 @@ return (
                     <span>{Math.round(delivery*costDelivery)} ₽</span>
                 </div>
             </div>
-
-            <div className={styles.calcPaymentBtn}>
-                <div> <span> Добавить в корзину</span></div>
-                <div><span>Получить расчет</span></div>
-            </div>
-
-
-
-
+            {PaymentBtn}
 </div>
 )};

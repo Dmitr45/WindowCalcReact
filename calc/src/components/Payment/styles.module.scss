@@ -5,7 +5,9 @@
     border-radius: 6px;
     color: #fff;
     padding: 30px;
-    
+    .paymentAll {
+      font-size: 34px;
+    }
     .calcPaymentContent {
       display: flex;
       div {
@@ -18,11 +20,9 @@
       span {
         font-size: 20px;
       }
-      .paymentAll {
-        font-size: 34px;
-      }
+      
     }
-    .calcPaymentBtn {
+    .PaymentBtn {
       display: flex;
       margin-top: 20px;
 
@@ -47,6 +47,13 @@
         span {
           font-size: 15px;
         }
+      }
+    }
+    .userForm{
+      input{
+        height: 50px;
+        width: 80%;
+        margin-top: 20px;
       }
     }
   }
