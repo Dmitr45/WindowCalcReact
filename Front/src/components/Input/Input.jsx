@@ -59,9 +59,7 @@ useEffect(()=>{
 let [multiTarget, setMultiTarget] = useState(multicolor.name);
 useEffect(()=>{
     toggleMulticolor({ id:  colorArr.findIndex( multi => multi.name === multiTarget ), name: multiTarget });
-    togglePaint(  { id: 0, name: colorArr[multicolor.id].col[0].name } ) ;
-    console.log("Multicolor: "+multicolor.name + "  paint:  "+ paint.name );  
-    
+    togglePaint(  { id: 0, name: colorArr[multicolor.id].col[0].name } ) ;    
 },[multiTarget]);
 
 

@@ -23,13 +23,15 @@ return (
                     <CalcNav/>
                     <Input/>
                     <Colors/>
+                <div style={{"text-align": "end", "font-size": 15+"px", "color": "gray", "margin": 20 + "px"}}> Автор приложения <a  href="http://pletnevd.com" target="blanck" style={{"color":"gray"}}>Плетнев Дмитрий</a></div>
                 </div>
                 <div class={styles.div}>
-   
+
                 </div>
 
         </div>
-
+            
         </AppContextProvider>
+
     </div>
 )};

@@ -1,13 +1,28 @@
 import { createContext, useState, useCallback, useRef, useEffect } from 'react';
-// import axios from "axios";
+import axios from 'axios';
+
+    const API_URL = "http://localhost:8000/Server/index.php";
 
 
 
 
+export const getData = async () => {
+    console.log('fetch')
+  try {
+    const resp = await axios.get(`${API_URL}`).then(resp => resp.data)
+    console.log(resp.data)
+    return resp.data
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
+    throw error;
+  }
+};
 
 
 
 export const useCreateAppContext = function(props) {
+
+
 
 
 
