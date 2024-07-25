@@ -5,7 +5,7 @@ import CalcNav from "../CalcNav/CalcNav";
 import Colors from '../Colors/Colors';
 import Payment from '../Payment/Payment';
 import Input from "../Input/Input";
-import FormSend from "../FormSend/FormSend";
+
 
 
 
@@ -15,7 +15,7 @@ return (
     <div className={styles.calc}>
         <AppContextProvider>
         <div className={styles.container}>
-                {/* <div class={styles.div}>
+                <div class={styles.div}>
                     <Window/>
                     <Payment/> 
                 </div>
@@ -24,9 +24,9 @@ return (
                     <Input/>
                     <Colors/>
                 <div style={{"text-align": "end", "font-size": 15+"px", "color": "gray", "margin": 20 + "px"}}> Автор приложения <a  href="http://pletnevd.com" target="blanck" style={{"color":"gray"}}>Плетнев Дмитрий</a></div>
-                </div> */}
+                </div>
                 <div class={styles.div}>
-                <FormSend/>
+
                 </div>
 
         </div>

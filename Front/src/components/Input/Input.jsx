@@ -66,7 +66,6 @@ useEffect(()=>{
 let [paintTarget, setTargetPaint] = useState(paint.name);
 useEffect(()=>{
     if (paintTarget)  {togglePaint(  { id:  colorArr[multicolor.id].col.findIndex( pai => pai.name === paintTarget ), name: paintTarget } ) };
-    console.log("Multicolor: "+multicolor.name + "  paint:  "+ paint.name );   
 },[paintTarget]);
 
 
