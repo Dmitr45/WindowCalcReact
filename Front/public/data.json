@@ -1,0 +1,84 @@
+[
+{"HeaderText" : "Загрузили файл DATA"},
+{"maxWindowSash" :4},
+{"maxWidthSash" : 800}, 
+{"maxHeightSash" : 2200},
+{"costGlass" : [0, 2000, 2500] },
+{"costHardenin" : 1000},
+{"costhiddHardware" : 1000},
+{"costMontage" : 3000} ,
+{"costDelivery" : 120},
+{ "profilesArr" :
+        [{
+                "name": "Reynaers",
+                "subProf": [{
+                    "name": "Masterline 8",
+                    "cost": 30000
+                },
+                {
+                    "name": "Slim Line 38",
+                    "cost": 32000  
+                }]
+        }, 
+        {
+                "name": "Alutech",
+                "subProf": [{
+                    "name": "W62",
+                    "cost": 22000
+                },
+                {
+                    "name": "W72",
+                    "cost": 26000  
+                }]
+        }]
+},
+{"colorArr":
+            [{
+                "name": "Одноцветная",
+                "col": [{
+                    "name": "RAL Глянец",
+                    "cost": 0
+                },
+                {
+                    "name": "RAL Муар",
+                    "cost": 500  
+                },
+                {
+                    "name": "Decoral",
+                    "cost": 4000 
+                }
+                ]
+            }, 
+            {
+                "name": "Двухцветная",
+                "col": [{
+                    "name": "RAL Глянец",
+                    "cost": 1000
+                },
+                {
+                    "name": "RAL Муар",
+                    "cost": 1500  
+                },
+                {
+                    "name": "Decoral",
+                    "cost": 5000 
+                }]
+            }
+                ]
+},
+{"optionsArr": 
+            [
+                {"name": "Отлив",
+                    "cost": 200 
+                },
+                {
+                "name": "Подоконник",
+                "cost": 300  
+                },
+                {
+                "name": "Антимоскитная сетка",
+                "cost": 3000 
+                }
+            ]
+}
+]

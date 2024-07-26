@@ -1,22 +1,10 @@
 import { createContext, useState, useCallback, useRef, useEffect } from 'react';
 import axios from 'axios';
-
-    const API_URL = "http://localhost:8000/Server/index.php";
-
+import DATA from "./data.json";
 
 
 
-export const getData = async () => {
-    console.log('fetch')
-  try {
-    const resp = await axios.get(`${API_URL}`).then(resp => resp.data)
-    console.log(resp.data)
-    return resp.data
-  } catch (error) {
-    console.error('There was a problem with the fetch operation:', error);
-    throw error;
-  }
-};
+
 
 
 
@@ -24,20 +12,17 @@ export const useCreateAppContext = function(props) {
 
 
 
-
-
 // Входные данные: ============================================================================================================
-const maxWindowSash = 4; //  Максимальное кол-во створок
-const maxWidthSash = 800; // Макс ширина створки
-const maxHeightSash = 2200; // Макс высота створки
-const costGlass = [0, 2000, 2500] // Стоимость стеклопакета 0, одинарного и двойного остекления
-const costHardenin = 1000; // Стоимость закалки
-const costhiddHardware = 1000; // Скрытая фурнитура
-const costMontage = 3000; // Монтаж
-const costDelivery = 120; // Доставка руб/км
-
-
-const profilesArr = 
+useEffect(()=>{console.log(DATA[0].HeaderText);},[]);
+const maxWindowSash =  DATA[1].maxWindowSash || 4; //  Максимальное кол-во створок
+const maxWidthSash = DATA[2].maxWidthSash || 800; // Макс ширина створки
+const maxHeightSash = DATA[3].maxHeightSash || 2200; // Макс высота створки
+const costGlass = DATA[4].costGlass || [0, 2000, 2500] // Стоимость стеклопакета 0, одинарного и двойного остекления
+const costHardenin = DATA[5].costHardenin || 1000; // Стоимость закалки
+const costhiddHardware = DATA[6].costhiddHardware || 1000; // Скрытая фурнитура
+const costMontage = DATA[7].costMontage || 3000; // Монтаж
+const costDelivery = DATA[8].costDelivery || 120; // Доставка руб/км
+const profilesArr = DATA[9].profilesArr || 
     [{
         name: "Reynaers",
         subProf: [{
@@ -61,9 +46,7 @@ const profilesArr =
         }]
     }
 ];
-
-
-const colorArr = 
+const colorArr =  DATA[10].colorArr ||
     [{
         name: "Одноцветная",
         col: [{
@@ -98,7 +81,9 @@ const colorArr =
 ];
 
 
-const optionsArr = [
+const optionsArr =  DATA[11].optionsArr ||
+
+[
 
     {name: "Отлив",
         cost: 200 // м погонный
@@ -112,25 +97,6 @@ const optionsArr = [
     cost: 3000 // шт
     }
 ];
-
-// const [DATA, setData] = useState();
-// useEffect(()=>{
-// axios
-//   .get("./DATA.json")
-//   .then((recpons) => setData(recpons.data))  
-//   .then(() => console.log(DATA))
-//   .then(()=>{
-//     maxWindowSash = DATA.maxWindowSash
-
-//   })
-//   .catch((err) => console.log(err));
-
-// },[])
-
-
-
-
-
 
 // Контекст для приложения ====================================================================================================
 

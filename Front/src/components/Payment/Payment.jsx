@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styles from "./styles.module.css";
 import {useAppContext} from  "../../context/ContextProvider";
 
@@ -33,25 +33,26 @@ let {optionsArr, option0, toggleOption0, // Опции Отлив
 let {paint, togglePaint, multicolor, toggleMulticolor, 
     colorArr}= useAppContext();// Выбранная краска}
 
-
-let [PaymentHide, setPaymentHide] = useState(true);
-let PaymentOffer =  <div className={styles.PaymentBtn}>
-                        <div onClick={()=>setPaymentHide(false)}><span >Получить смету</span></div>
-                        <div onClick={()=>setPaymentHide(false)}><span >Консультация</span></div>
-                    </div>;
-
-
-let [PaymentBtn, setPaymentBtn] = useState("");
-useEffect(()=>{
-    PaymentHide ? setPaymentBtn(PaymentOffer) : setPaymentBtn(PaymentSend);
-
-},[PaymentHide])
-
+let [PaymentHide, setPaymentHide] = useState(1);
 
 let [BaseCost, setBaseCost] = useState(0);
 let [infoBlock, setInfoBlock] = useState();
-let [customerName, setCustomerName] = useState("Гость");
-let [customerMail, setCustomerMail] = useState("pletnevdn@gmail.com")
+let [customerName, setCustomerName] = useState();
+let [customerMail, setCustomerMail] = useState()
+let [targetName, setTargetName] = useState(customerName);
+let [targetMail, setTargetMail] = useState(customerMail);
+
+let [PaymentBtn, setPaymentBtn] = useState("");
+useEffect(()=>{
+    if (PaymentHide == 1)  setPaymentBtn(PaymentOffer);
+    if (PaymentHide == 2 && customerMail)  setPaymentBtn(PaymentSend);
+    if (PaymentHide == 3)  setPaymentBtn(PaymentThanks);
+    if (PaymentHide == 4)  setPaymentBtn(PaymentErr);
+},[PaymentHide, customerMail])
+
+
+
+
 useEffect(()=>{
 let S = (widthWindow/1000)*(heightWindow/1000); // Площадь в метрах 
 
@@ -61,8 +62,8 @@ setBaseCost(
         )
 
     setInfoBlock(JSON.stringify({
-        "name": customerName,
-        "email": customerMail,
+        "name": customerName ,
+        "email": customerMail ,
         "typeWindow": typeWindow,
         "widthWindow": widthWindow,
         "heightWindow": heightWindow,
@@ -75,32 +76,67 @@ setBaseCost(
         "option2": option2? "Да": "Нет",
     }))
 
+}, [widthWindow, heightWindow, profile, subProfile, glass, hardening, hiddHardware, montage, delivery, option0, option1, option2, paint, multicolor, customerName, customerMail, PaymentHide]);
+
+
+
+useEffect(()=>{
+setCustomerName(targetName);
+setCustomerMail(targetMail);
+},[targetName,targetMail]);
+
+let PaymentOffer =  useCallback( <div className={styles.PaymentBtn}>
+                    <input type="text" id="name" name="name" placeholder="Your name.." required value={customerName} onChange={(e)=> setTargetName(e.target.value)}  /><p/>
+                    <input type="email" id="email" name="email" placeholder="Your email.." required value={customerMail} onChange={(e)=> setTargetMail(e.target.value)}  /><p/>
+                    <div onClick={()=> setPaymentHide(2)  }><span >Получить консультация</span></div>
+                    </div>);
+
+  let  PaymentSend =   <div className={styles.userForm}>
+        <form action="" method="post">
+                <div className={styles.PaymentBtn}>
+                <div type="submit" value="Register" onClick={handleClick}>Отправить заявку</div>
+                </div>
+        </form>
+    </div>;
+
+let PaymentThanks = <div className={styles.userForm}>
+<form action="" method="post">
+    <p>
+       <div> Спасибо! Ваша заявка отправлена! Вам на почту придет сообщение.  </div>
+       <div> Не забудьте проверить папку "Спам"   </div>
+    </p>
+</form>
+</div>;
+
+let PaymentErr = <div className={styles.userForm}>
+<form action="" method="post">
+    <p>
+       <div> Внимание! Ваша заявка НЕ отправлена! Возникла ошибка!  </div>
+       <div> Пожалуйста, попробуйте позже или напишите на pletnevdn@gmail.com!   </div>
+    </p>
+</form>
+</div>;
+
+async function handleClick (e) {
+
     console.log(infoBlock);
+    const response = await fetch('ServerPHP/send_mail.php', {
+        method: 'POST',
+        body:infoBlock
+    });
+    if(response.ok){
+        // const json = await response.json();
+        console.log("Письмо ушло");
+        setPaymentHide(3);
 
-}, [widthWindow, heightWindow, profile, subProfile, glass, hardening, hiddHardware, montage, delivery, option0, option1, option2, paint, multicolor, customerName, customerMail]);
+    }
+    else{
+        console.log('Ошибка отправки');
+        setPaymentHide(4);
+    }
+};
 
-let PaymentSend =   <div className={styles.userForm}>
-                        <form action="" method="post">
-                                <input type="text" id="name" name="name" placeholder="Your name.." required value={customerName} onChange={(e)=> setCustomerName(e.target.value)}  /><p/>
-                                <input type="email" id="email" name="email" placeholder="Your email.." required value={customerMail} onChange={(e)=> setCustomerMail(e.target.value)}  /><p/>
-                                <div className={styles.PaymentBtn}>
-                                <div type="submit" value="Register" onClick={async (e)=>{
-                                            console.log(infoBlock);
-                                            const response = await fetch('ServerPHP/send_mail.php', {
-                                                method: 'POST',
-                                                body:infoBlock
-                                            });
-                                            if(response.ok){
-                                                // const json = await response.json();
-                                                console.log("Письмо ушло");
-                                            }
-                                            else{
-                                                console.log('Ошибка отправки');
-                                            }
-                                }}>Отправить заявку</div>
-                                </div>
-                        </form>
-                    </div>;
+
 
 
 
