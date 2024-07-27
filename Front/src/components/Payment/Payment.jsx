@@ -45,12 +45,17 @@ let [targetMail, setTargetMail] = useState(customerMail);
 let [PaymentBtn, setPaymentBtn] = useState("");
 useEffect(()=>{
     if (PaymentHide == 1)  setPaymentBtn(PaymentOffer);
-    if (PaymentHide == 2 && customerMail)  setPaymentBtn(PaymentSend);
+    if (PaymentHide == 2 && customerMail)  Resend(handleClick);
     if (PaymentHide == 3)  setPaymentBtn(PaymentThanks);
     if (PaymentHide == 4)  setPaymentBtn(PaymentErr);
 },[PaymentHide, customerMail])
 
-
+let Resend = (func) =>{
+    let coin=0;   
+    let Dalay = setInterval(()=>{
+        coin++; 
+        if (coin===2) {func(); clearInterval(Dalay);  }    
+    },100) };
 
 
 useEffect(()=>{
@@ -85,19 +90,25 @@ setCustomerName(targetName);
 setCustomerMail(targetMail);
 },[targetName,targetMail]);
 
-let PaymentOffer =  useCallback( <div className={styles.PaymentBtn}>
+
+
+
+let PaymentOffer =  useCallback( <div className={styles.userForm}>
                     <input type="text" id="name" name="name" placeholder="Your name.." required value={customerName} onChange={(e)=> setTargetName(e.target.value)}  /><p/>
                     <input type="email" id="email" name="email" placeholder="Your email.." required value={customerMail} onChange={(e)=> setTargetMail(e.target.value)}  /><p/>
-                    <div onClick={()=> setPaymentHide(2)  }><span >Получить консультация</span></div>
+                    <div className={styles.PaymentBtn}>
+                    <div  type="submit" value="Register" onClick={()=> setPaymentHide(2)  }><span >Получить консультацию</span></div>
+                    </div>
                     </div>);
 
-  let  PaymentSend =   <div className={styles.userForm}>
-        <form action="" method="post">
-                <div className={styles.PaymentBtn}>
-                <div type="submit" value="Register" onClick={handleClick}>Отправить заявку</div>
-                </div>
-        </form>
-    </div>;
+//   let  PaymentSend =   <div className={styles.userForm}>
+//         <form action="" method="post">
+//                 <div className={styles.PaymentBtn}>
+//                 {   Resend(handleClick) }
+//                 {/* <div type="submit" value="Register" onClick={handleClick}>Отправить заявку</div> */}
+//                 </div>
+//         </form>
+//     </div>;
 
 let PaymentThanks = <div className={styles.userForm}>
 <form action="" method="post">
