@@ -2,7 +2,6 @@ import {AppContextProvider} from "../../context/ContextProvider";
 import styles from "./styles.module.css";
 import Window from "../Window/Window";
 import CalcNav from "../CalcNav/CalcNav";
-import Colors from '../Colors/Colors';
 import Payment from '../Payment/Payment';
 import Input from "../Input/Input";
 
@@ -22,8 +21,7 @@ return (
                 <div class={styles.div}>
                     <CalcNav/>
                     <Input/>
-                    <Colors/>
-                <div style={{"text-align": "end", "font-size": 15+"px", "color": "gray", "margin": 20 + "px"}}> Автор приложения <a  href="http://pletnevd.com" target="blanck" style={{"color":"gray"}}>Плетнев Дмитрий</a></div>
+                <div style={{"text-align": "end", "font-size": 10+"px", "color": "gray", "margin": 20 + "px", "opacity": "0.1"}}> Автор приложения <a  href="http://pletnevd.com" target="blanck" style={{"color":"gray", "text-decoration": "none"}}>Плетнев Дмитрий</a></div>
                 </div>
                 <div class={styles.div}>
 

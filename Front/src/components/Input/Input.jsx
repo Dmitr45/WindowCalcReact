@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from "./styles.module.css";
 import {useAppContext} from  "../../context/ContextProvider";
+import Colors from "../Colors/Colors"
 
 
 
@@ -158,8 +159,9 @@ return (
                                     </select>
                             </div>
                 </div>
+                
             </div>
-
+                    <Colors/>
             {/* Выбор стеклопакета */}
             <div className={styles.selectSize}>
                 <div className={styles.L}>

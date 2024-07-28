@@ -27,7 +27,7 @@ return (
 
 
                     <div className={styles.calcImg}>
-                        <img src={"./img/window"+typeWindow+".png"} alt="window" className={styles.calcImgItem}/>
+                        <img src={"/CalculatorJs/img/window"+typeWindow+".png"} alt="window" className={styles.calcImgItem}/>
                         <input type="range" className={styles.Width} value={widthWindow}   min="400" max="3200" onChange={(e)=>{toggleWidthWindow(e.target.value)}} />
                             <p className={styles.touchText}> {widthWindow} мм</p>
                     </div>

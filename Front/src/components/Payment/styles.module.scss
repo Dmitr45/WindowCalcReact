@@ -25,6 +25,7 @@
     .PaymentBtn {
       display: flex;
       margin-top: 20px;
+      flex-wrap: wrap;
 
       div {
         &:hover {
@@ -40,6 +41,7 @@
         display: flex;
         align-items: center;
         margin-right: 20px;
+        min-width: 350px;
         img {
           width: 18px;
           margin-right: 10px;

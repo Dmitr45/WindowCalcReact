@@ -131,7 +131,7 @@ let PaymentErr = <div className={styles.userForm}>
 async function handleClick (e) {
 
     console.log(infoBlock);
-    const response = await fetch('ServerPHP/send_mail.php', {
+    const response = await fetch('/CalculatorJs/ServerPHP/send_mail.php', {
         method: 'POST',
         body:infoBlock
     });
