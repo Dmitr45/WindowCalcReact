@@ -44,13 +44,14 @@ let [targetMail, setTargetMail] = useState(customerMail);
 
 let [PaymentBtn, setPaymentBtn] = useState("");
 useEffect(()=>{
-    if (PaymentHide == 1)  setPaymentBtn(PaymentOffer);
-    if (PaymentHide == 2 && customerMail)  Resend(handleClick);
-    if (PaymentHide == 3)  setPaymentBtn(PaymentThanks);
-    if (PaymentHide == 4)  setPaymentBtn(PaymentErr);
+    if (PaymentHide === 1)  setPaymentBtn(PaymentOffer);
+    if (PaymentHide === 2 && customerMail)   Resend(handleClick);
+    if (PaymentHide === 3)  setPaymentBtn(PaymentThanks);
+    if (PaymentHide === 4)  setPaymentBtn(PaymentErr);
 },[PaymentHide, customerMail])
 
 let Resend = (func) =>{
+    setPaymentBtn(PaymentLoader);
     let coin=0;   
     let Dalay = setInterval(()=>{
         coin++; 
@@ -101,14 +102,9 @@ let PaymentOffer =  useCallback( <div className={styles.userForm}>
                     </div>
                     </div>);
 
-//   let  PaymentSend =   <div className={styles.userForm}>
-//         <form action="" method="post">
-//                 <div className={styles.PaymentBtn}>
-//                 {   Resend(handleClick) }
-//                 {/* <div type="submit" value="Register" onClick={handleClick}>Отправить заявку</div> */}
-//                 </div>
-//         </form>
-//     </div>;
+  let  PaymentLoader =   <div className={styles.userForm}>
+                            <div style={{"margin": "0 auto", "width": "50px"}}><img src="/CalculatorJs/img/loader.gif" alt="Ждем ответа сервера" style={{"margin": "0 auto", "width": "50px"}}  /></div>
+                        </div>;
 
 let PaymentThanks = <div className={styles.userForm}>
 <form action="" method="post">

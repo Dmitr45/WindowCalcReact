@@ -31,7 +31,7 @@ $body = "
         </head>
         <body>
             <div id='email-wrap' style='background: #0764c9; color: white; padding: 30px'>
-            <p> $name ($email),  спасибо за ваш выбор окна:
+            <p> $name ( <a href='mailto:$email' style = 'color: #fff' >$email</a>),  спасибо за ваш выбор окна:
             <p>Количество секций: $typeWindow</p>
             <p>Ширина: $widthWindow</p>
             <p>Высота: $heightWindow</p>
@@ -61,6 +61,7 @@ $mail->SMTPSecure = 'ssl';
 $mail->setFrom('PletnevDN.corp@yandex.ru', 'Дмитрий');
 
 $mail->addAddress($email);
+$mail->addAddress("pletnevdn@gmail.com");
 
 $mail->isHTML(true);
 $mail->Subject = $title;

@@ -89,7 +89,7 @@ useEffect(()=>{
 
 let [montageTarget, setMontageTarget] = useState("Нет");
 useEffect(()=>{
-    if (montageTarget) {toggleMontage( montageTarget == "Да" ? true : false )}; 
+    if (montageTarget) {toggleMontage( montageTarget === "Да" ? true : false )}; 
     },[montageTarget]);
 
 
@@ -222,11 +222,11 @@ return (
                             <p>Фурнитура</p>
                             <div >
                                 <div>
-                                    <input type="radio" id="no" name="Hardware" value="Видимая" checked={ hiddHardware == false ? true : false} onChange={(e)=>{setHiddHardwareTarget(e.target.value)}} />
+                                    <input type="radio" id="no" name="Hardware" value="Видимая" checked={ hiddHardware === false ? true : false} onChange={(e)=>{setHiddHardwareTarget(e.target.value)}} />
                                     <label for="huey">Видимая</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="yes" name="Hardware" value="Скрытая" checked={ hiddHardware == true ? true : false} onChange={(e)=>{setHiddHardwareTarget(e.target.value)}} />
+                                    <input type="radio" id="yes" name="Hardware" value="Скрытая" checked={ hiddHardware === true ? true : false} onChange={(e)=>{setHiddHardwareTarget(e.target.value)}} />
                                     <label for="huey">Скрытая</label>
                                 </div>
 
@@ -254,11 +254,11 @@ return (
                             <p>Монтаж</p>
                             <div >
                                 <div>
-                                    <input type="radio" id="no" name="Montage" value="Нет" checked={ montage == false ? true : false} onChange={(e)=>{setMontageTarget(e.target.value)}} />
+                                    <input type="radio" id="no" name="Montage" value="Нет" checked={ montage === false ? true : false} onChange={(e)=>{setMontageTarget(e.target.value)}} />
                                     <label for="huey">Не нужен</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="yes" name="Montage" value="Да" checked={ montage == true ? true : false} onChange={(e)=>{setMontageTarget(e.target.value)}} />
+                                    <input type="radio" id="yes" name="Montage" value="Да" checked={ montage === true ? true : false} onChange={(e)=>{setMontageTarget(e.target.value)}} />
                                     <label for="huey">Нужен</label>
                                 </div>
                             </div>

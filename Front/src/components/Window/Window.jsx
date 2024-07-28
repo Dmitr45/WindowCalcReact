@@ -1,6 +1,6 @@
 import styles from "./styles.module.css";
 import {useAppContext} from  "../../context/ContextProvider";
-import { useEffect } from "react";
+
 
 
 
@@ -10,7 +10,7 @@ import { useEffect } from "react";
 export default function Window(){
 
 
-let {typeWindow, toggleTypeWindow} = useAppContext();
+let {typeWindow} = useAppContext();
 let {widthWindow, toggleWidthWindow, 
      heightWindow, toggleHeightWindow} = useAppContext();
 

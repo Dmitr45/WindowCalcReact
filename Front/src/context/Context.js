@@ -1,6 +1,5 @@
-import { createContext, useState, useCallback, useRef, useEffect } from 'react';
-import axios from 'axios';
-import DATA from "./data.json";
+import { useState, useCallback, useEffect } from 'react';
+import DATA from "./CalculatorJs/data.json";
 
 
 
@@ -23,57 +22,78 @@ const costhiddHardware = DATA[6].costhiddHardware || 1000; // Скрытая ф�
 const costMontage = DATA[7].costMontage || 3000; // Монтаж
 const costDelivery = DATA[8].costDelivery || 120; // Доставка руб/км
 const profilesArr = DATA[9].profilesArr || 
-    [{
+    [{  id:0, 
         name: "Reynaers",
         subProf: [{
+            id:0, 
             name: "Masterline 8",
-            cost: 30000
+            cost: 30000, 
+            thermalProtection : 30,
+            lightProtection : 20,
+            soundProtection : 10
         },
-        {
+        {   id:1,
             name: "Slim Line 38",
-            cost: 32000  
+            cost: 32000,
+            thermalProtection : 95,
+            lightProtection : 50,
+            soundProtection : 56
         }]
     }, 
-    {
+    {   id:1, 
         name: "Alutech",
         subProf: [{
+            id:0,
             name: "W62",
-            cost: 22000
+            cost: 22000,
+            thermalProtection : 30,
+            lightProtection : 20,
+            soundProtection : 10
         },
         {
+            id:1,
             name: "W72",
-            cost: 26000  
+            cost: 26000,
+            thermalProtection : 60,
+            lightProtection : 50,
+            soundProtection : 70 
         }]
     }
 ];
 const colorArr =  DATA[10].colorArr ||
-    [{
+    [{  id:0,
         name: "Одноцветная",
         col: [{
+            id:0,
             name: "RAL Глянец",
             cost: 0
         },
         {
+            id:1,
             name: "RAL Муар",
             cost: 500  
         },
         {
+            id:2,
             name: "Decoral",
             cost: 4000 
         }
         ]
     }, 
-    {
+    {   id:1,
         name: "Двухцветная",
         col: [{
+            id:0,
             name: "RAL Глянец",
             cost: 1000
         },
         {
+            id:1,
             name: "RAL Муар",
             cost: 1500  
         },
         {
+            id:2,
             name: "Decoral",
             cost: 5000 
         }]
@@ -103,47 +123,47 @@ const optionsArr =  DATA[11].optionsArr ||
 
 
     const [typeWindow, setTypeWindow] = useState(props.typeWindow || 1); // Колличество окон 1-4
-    const toggleTypeWindow = useCallback((num) => {setTypeWindow(num)});
+    const toggleTypeWindow = useCallback((num) => {setTypeWindow(num)},[]);
 
     const [widthWindow, setWidthWindow] = useState(props.widthWindow ||  800); // Ширина окна, мм
     const [heightWindow, setHeightWindow] = useState(props.heightWindow ||  1350); // Высота окна, мм
-    const toggleWidthWindow = useCallback((num)=> {setWidthWindow(num)});
-    const toggleHeightWindow = useCallback((num)=> {setHeightWindow(num)});
+    const toggleWidthWindow = useCallback((num)=> {setWidthWindow(num)},[]);
+    const toggleHeightWindow = useCallback((num)=> {setHeightWindow(num)},[]);
 
     const [profile, setProfile] = useState(props.profile ||  {id: 0, name: profilesArr[0].name});  // Номер профиля  
-    const toggleProfile = useCallback((num)=> {setProfile(num)});
+    const toggleProfile = useCallback((num)=> {setProfile(num)},[]);
 
     const [subProfile, setSubProfile] = useState(props.subProfile || {id: 0, name: profilesArr[0].subProf[0].name });  // Номер субпрофиля
-    const toggleSubProfile  = useCallback((num)=> {setSubProfile(num)});   
+    const toggleSubProfile  = useCallback((num)=> {setSubProfile(num)},[]);   
 
     const [multicolor, setMulticolor] = useState(props.multicolor ||  {id: 0, name: colorArr[0].name});  // Кратность окраски 1 или 2
-    const toggleMulticolor = useCallback((num)=> {setMulticolor(num)});
+    const toggleMulticolor = useCallback((num)=> {setMulticolor(num)},[]);
 
     const [paint, setPaint] = useState(props.paint ||  {id: 0, name: colorArr[0].col[0].name});  // Краска
-    const togglePaint  = useCallback((num)=> {setPaint(num)});   
+    const togglePaint  = useCallback((num)=> {setPaint(num)},[]);   
 
 
-    const [glass, setGlass] = useState(props.glass || {id:1, name: "Однокамерное" });  // Однокамерное или двух 1 || 2
-    const toggleGlass  = useCallback((num)=> {setGlass(num)});
+    const [glass, setGlass] = useState(props.glass || {id:1, name: colorArr[0].name });  // Однокамерное или двух 1 || 2
+    const toggleGlass  = useCallback((num)=> {setGlass(num)},[]);
 
     const [hardening, setHardening] = useState(props.hardening || true);  // 
-    const toggleHardening  = useCallback((num)=> {setHardening(num)}); // Закалка
+    const toggleHardening  = useCallback((num)=> {setHardening(num)},[]); // Закалка
 
     const [hiddHardware, setHiddHardware] = useState(props.hiddHardware || false);  //  Скрытая фурнитура
-    const toggleHiddHardware  = useCallback((num)=> {setHiddHardware(num)}); 
+    const toggleHiddHardware  = useCallback((num)=> {setHiddHardware(num)},[]); 
 
     const [montage, setMontage] = useState(props.montage || false);  //  Скрытая фурнитура
-    const toggleMontage  = useCallback((num)=> {setMontage(num)}); 
+    const toggleMontage  = useCallback((num)=> {setMontage(num)},[]); 
 
     const [delivery, setDelivery] = useState(props.delivery || 0);  //  Скрытая фурнитура
-    const toggleDelivery  = useCallback((num)=> {setDelivery(num)}); 
+    const toggleDelivery  = useCallback((num)=> {setDelivery(num)},[]); 
 
     const [option0, setOptionTide] = useState(props.option0 || false); // отлив
-    const toggleOption0 = useCallback((num)=> {setOptionTide(num)}); 
+    const toggleOption0 = useCallback((num)=> {setOptionTide(num)},[]); 
     const [option1, setOptionWindowsill] = useState(props.option1 || false); // Подоконник
-    const toggleOption1 = useCallback((num)=> {setOptionWindowsill(num)}); 
+    const toggleOption1 = useCallback((num)=> {setOptionWindowsill(num)},[]); 
     const [option2, setOptionMosquit] = useState(props.option2 || false); // Антимоскитная сетка
-    const toggleOption2 = useCallback((num)=> {setOptionMosquit(num)}); 
+    const toggleOption2 = useCallback((num)=> {setOptionMosquit(num)},[]); 
 
     
     
