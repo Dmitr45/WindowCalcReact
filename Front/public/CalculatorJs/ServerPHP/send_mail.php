@@ -21,6 +21,7 @@ $option1 = $req->option1;
 $option2 = $req->option2;
 $email = $req->email;
 $name = $req->name;
+$emailManager = $req->emailManager;
 
 $title = 'Параметры заявки';
 $body = "
@@ -61,7 +62,7 @@ $mail->SMTPSecure = 'ssl';
 $mail->setFrom('PletnevDN.corp@yandex.ru', 'Дмитрий');
 
 $mail->addAddress($email);
-$mail->addAddress("pletnevdn@gmail.com");
+$mail->addAddress($emailManager);
 
 $mail->isHTML(true);
 $mail->Subject = $title;

@@ -5,18 +5,19 @@ import {useAppContext} from  "../../context/ContextProvider";
 
 
 export default function Colors(){
-const  profilesArr =  useAppContext(); // Массив профилей
+const  {profilesArr} =  useAppContext(); // Массив профилей
+const {glass} = useAppContext(); // Одно, двухкамерная
 let {profile, toggleProfile} = useAppContext(); // Профиль окна текущий
 let {subProfile, toggleSubProfile}  = useAppContext(); // Субпрофиль текущий
 let [percent, setPercent] = useState([0, 0, 0]); // [Red Yellow Green]
 
 useEffect(()=>{
     setPercent([
-        profilesArr.profilesArr[profile.id].subProf[subProfile.id].thermalProtection,
-        profilesArr.profilesArr[profile.id].subProf[subProfile.id].lightProtection,
-        profilesArr.profilesArr[profile.id].subProf[subProfile.id].soundProtection,
+        glass.id === 2 ? (profilesArr[profile.id].subProf[subProfile.id].thermalProtection + 20) : profilesArr[profile.id].subProf[subProfile.id].thermalProtection,
+        glass.id === 2 ? (profilesArr[profile.id].subProf[subProfile.id].lightProtection + 20) : profilesArr[profile.id].subProf[subProfile.id].lightProtection,
+        glass.id === 2 ? (profilesArr[profile.id].subProf[subProfile.id].soundProtection + 20) : profilesArr[profile.id].subProf[subProfile.id].soundProtection
     ])
-} ,[profile,subProfile]);
+} ,[profile,subProfile, glass]);
 
 return (
     <div className={styles.temp}>

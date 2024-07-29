@@ -16,7 +16,7 @@ useEffect(()=>{console.log(DATA[0].HeaderText);},[]);
 const maxWindowSash =  DATA[1].maxWindowSash || 4; //  Максимальное кол-во створок
 const maxWidthSash = DATA[2].maxWidthSash || 800; // Макс ширина створки
 const maxHeightSash = DATA[3].maxHeightSash || 2200; // Макс высота створки
-const costGlass = DATA[4].costGlass || [0, 2000, 2500] // Стоимость стеклопакета 0, одинарного и двойного остекления
+const costGlass = DATA[4].costGlass || [0, 2000, 2500]; // Стоимость стеклопакета 0, одинарного и двойного остекления
 const costHardenin = DATA[5].costHardenin || 1000; // Стоимость закалки
 const costhiddHardware = DATA[6].costhiddHardware || 1000; // Скрытая фурнитура
 const costMontage = DATA[7].costMontage || 3000; // Монтаж
@@ -100,11 +100,8 @@ const colorArr =  DATA[10].colorArr ||
     }
 ];
 
-
 const optionsArr =  DATA[11].optionsArr ||
-
 [
-
     {name: "Отлив",
         cost: 200 // м погонный
     },
@@ -117,6 +114,8 @@ const optionsArr =  DATA[11].optionsArr ||
     cost: 3000 // шт
     }
 ];
+
+const emailManager = DATA[12].mailManager || "pletnevdn@gmail.com";
 
 // Контекст для приложения ====================================================================================================
 
@@ -179,6 +178,7 @@ const optionsArr =  DATA[11].optionsArr ||
         costDelivery,
         optionsArr,
         colorArr,
+        emailManager,
 
         typeWindow, toggleTypeWindow, // Кол-во створок
         widthWindow, toggleWidthWindow, // Размер окна [высота, ширина], мм

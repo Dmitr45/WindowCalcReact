@@ -1,143 +1,146 @@
 [
 	{
-		"HeaderText": "Загрузили файл DATA 28.07.2024"
+	  "HeaderText": "Загрузили файл DATA 28.07.2024"
 	},
 	{
-		"maxWindowSash": 4
+	  "maxWindowSash": 4
 	},
 	{
-		"maxWidthSash": 800
+	  "maxWidthSash": 800
 	},
 	{
-		"maxHeightSash": 2200
+	  "maxHeightSash": 2200
 	},
 	{
-		"costGlass": [
-			0,
-			2000,
-			2500
-		]
+	  "costGlass": [
+		0,
+		2000,
+		2500
+	  ]
 	},
 	{
-		"costHardenin": 1000
+	  "costHardenin": 1000
 	},
 	{
-		"costhiddHardware": 1000
+	  "costhiddHardware": 1000
 	},
 	{
-		"costMontage": 3000
+	  "costMontage": 3000
 	},
 	{
-		"costDelivery": 120
+	  "costDelivery": 120
 	},
 	{
-		"profilesArr": [
+	  "profilesArr": [
+		{
+		  "id": 0,
+		  "name": "Reynaers",
+		  "subProf": [
 			{
-				"id": 0,
-				"name": "Reynaers",
-				"subProf": [
-					{
-						"id": 0,
-						"name": "Masterline 8",
-						"cost": 30000,
-						"thermalProtection": 25,
-						"lightProtection": 30,
-						"soundProtection": 15
-					},
-					{
-						"id": 1,
-						"name": "Slim Line 38",
-						"cost": 32000,
-						"thermalProtection": 78,
-						"lightProtection": 55,
-						"soundProtection": 90
-					}
-				]
+			  "id": 0,
+			  "name": "Masterline 8",
+			  "cost": 30000,
+			  "thermalProtection": 25,
+			  "lightProtection": 30,
+			  "soundProtection": 15
 			},
 			{
-				"id": 1,
-				"name": "Alutech",
-				"subProf": [
-					{
-						"id": 0,
-						"name": "W62",
-						"cost": 22000,
-						"thermalProtection": 30,
-						"lightProtection": 20,
-						"soundProtection": 10
-					},
-					{
-						"id": 1,
-						"name": "W72",
-						"cost": 26000,
-						"thermalProtection": 75,
-						"lightProtection": 95,
-						"soundProtection": 63
-					}
-				]
+			  "id": 1,
+			  "name": "Slim Line 38",
+			  "cost": 32000,
+			  "thermalProtection": 78,
+			  "lightProtection": 55,
+			  "soundProtection": 90
 			}
-		]
+		  ]
+		},
+		{
+		  "id": 1,
+		  "name": "Alutech",
+		  "subProf": [
+			{
+			  "id": 0,
+			  "name": "W62",
+			  "cost": 22000,
+			  "thermalProtection": 30,
+			  "lightProtection": 20,
+			  "soundProtection": 10
+			},
+			{
+			  "id": 1,
+			  "name": "W72",
+			  "cost": 26000,
+			  "thermalProtection": 75,
+			  "lightProtection": 95,
+			  "soundProtection": 63
+			}
+		  ]
+		}
+	  ]
 	},
 	{
-		"colorArr": [
+	  "colorArr": [
+		{
+		  "id": 0,
+		  "name": "Одноцветная",
+		  "col": [
 			{
-				"id": 0,
-				"name": "Одноцветная",
-				"col": [
-					{
-						"id": 0,
-						"name": "RAL Глянец",
-						"cost": 0
-					},
-					{
-						"id": 1,
-						"name": "RAL Муар",
-						"cost": 500
-					},
-					{
-						"id": 2,
-						"name": "Decoral",
-						"cost": 4000
-					}
-				]
+			  "id": 0,
+			  "name": "RAL Глянец",
+			  "cost": 0
 			},
 			{
-				"id": 1,
-				"name": "Двухцветная",
-				"col": [
-					{
-						"id": 0,
-						"name": "RAL Глянец",
-						"cost": 1000
-					},
-					{
-						"id": 1,
-						"name": "RAL Муар",
-						"cost": 1500
-					},
-					{
-						"id": 2,
-						"name": "Decoral",
-						"cost": 5000
-					}
-				]
+			  "id": 1,
+			  "name": "RAL Муар",
+			  "cost": 500
+			},
+			{
+			  "id": 2,
+			  "name": "Decoral",
+			  "cost": 4000
 			}
-		]
+		  ]
+		},
+		{
+		  "id": 1,
+		  "name": "Двухцветная",
+		  "col": [
+			{
+			  "id": 0,
+			  "name": "RAL Глянец",
+			  "cost": 1000
+			},
+			{
+			  "id": 1,
+			  "name": "RAL Муар",
+			  "cost": 1500
+			},
+			{
+			  "id": 2,
+			  "name": "Decoral",
+			  "cost": 5000
+			}
+		  ]
+		}
+	  ]
 	},
 	{
-		"optionsArr": [
-			{
-				"name": "Отлив",
-				"cost": 200
-			},
-			{
-				"name": "Подоконник",
-				"cost": 300
-			},
-			{
-				"name": "Антимоскитная сетка",
-				"cost": 3000
-			}
-		]
+	  "optionsArr": [
+		{
+		  "name": "Отлив",
+		  "cost": 200
+		},
+		{
+		  "name": "Подоконник",
+		  "cost": 300
+		},
+		{
+		  "name": "Антимоскитная сетка",
+		  "cost": 3000
+		}
+	  ]
+	},
+	{
+	  "emailManager": "Pletnevdn@gmail.com"
 	}
-]
+  ]

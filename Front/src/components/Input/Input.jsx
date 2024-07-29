@@ -6,10 +6,7 @@ import Colors from "../Colors/Colors"
 
 
 export default function Input(){
-    const  profilesArr =  useAppContext(); // Массив профилей
-    const maxWindowSash = useAppContext(); //  Максимальное кол-во створок
-    const maxWidthSash = useAppContext();// Макс ширина створки
-
+    const  {profilesArr} =  useAppContext(); // Массив профилей
 
 
     let {widthWindow, toggleWidthWindow, 
@@ -29,8 +26,8 @@ export default function Input(){
 
 
 
-let selectProfile = profilesArr.profilesArr.map((prof, index) =>{ return <option id={index} value={prof.name}>{prof.name}</option> }); // Выбор профиля
-let selectSubprof =  profilesArr.profilesArr[profile.id].subProf.map((sub, index) =>{ return <option id={index} value={sub.name}>{sub.name}</option> }); // Выбор субпрофит
+let selectProfile = profilesArr.map((prof, index) =>{ return <option id={index} value={prof.name}>{prof.name}</option> }); // Выбор профиля
+let selectSubprof =  profilesArr[profile.id].subProf.map((sub, index) =>{ return <option id={index} value={sub.name}>{sub.name}</option> }); // Выбор субпрофит
 let selectGlass =  <><option  value="Однокамерный">Oднокамерное</option> <option  value="Двухкамерный">Двухкамерный</option>;</> // Выбор остекления
 let selectHardenin =  <><option  value="Да">Да</option> <option  value="Нет">Нет</option>;</> // Закалки стекла
 let selectMulti = colorArr.map((multi, index) =>{ return <option id={index} value={multi.name}>{multi.name}</option> }); // Кратность видов краски
@@ -43,8 +40,8 @@ let selectColor =  colorArr[multicolor.id].col.map((color, index) =>{ return <op
 
 let [profTarget, setProfTarget] = useState(profile.name);
 useEffect(()=>{
-    toggleProfile({ id:  profilesArr.profilesArr.findIndex( prof => prof.name === profTarget ), name: profTarget });
-    toggleSubProfile(  { id: 0, name: profilesArr.profilesArr[profile.id].subProf[0].name } ) ;
+    toggleProfile({ id:  profilesArr.findIndex( prof => prof.name === profTarget ), name: profTarget });
+    toggleSubProfile(  { id: 0, name: profilesArr[profile.id].subProf[0].name } ) ;
     
 },[profTarget]);
 
@@ -52,7 +49,7 @@ useEffect(()=>{
 
 let [subTarget, setSubTarget] = useState(subProfile.name);
 useEffect(()=>{
-    if (subTarget)  {toggleSubProfile(  { id:  profilesArr.profilesArr[profile.id].subProf.findIndex( sub => sub.name === subTarget ), name: subTarget } ) };
+    if (subTarget)  {toggleSubProfile(  { id:  profilesArr[profile.id].subProf.findIndex( sub => sub.name === subTarget ), name: subTarget } ) };
 },[subTarget]);
 
 

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import styles from "./styles.module.css";
 import {useAppContext} from  "../../context/ContextProvider";
 
@@ -7,8 +7,8 @@ import {useAppContext} from  "../../context/ContextProvider";
 export default function Payment(){
 
 
-const  profilesArr =  useAppContext(); // Массив профилей
-
+const  {profilesArr} =  useAppContext(); // Массив профилей
+const {emailManager} = useAppContext();
 
 let {typeWindow, toggleTypeWindow} = useAppContext(); // Сколько секций у окна
 let {widthWindow, toggleWidthWindow, 
@@ -63,13 +63,14 @@ useEffect(()=>{
 let S = (widthWindow/1000)*(heightWindow/1000); // Площадь в метрах 
 
 setBaseCost( 
-    Math.round(S* ( profilesArr.profilesArr[profile.id].subProf[subProfile.id].cost + colorArr[multicolor.id].col[paint.id].cost + costGlass[glass.id] + (hardening ? costHardenin: 0) + (hiddHardware ? costhiddHardware: 0) + (montage ? costMontage: 0) + (delivery*costDelivery)))
+    Math.round(S* ( profilesArr[profile.id].subProf[subProfile.id].cost + colorArr[multicolor.id].col[paint.id].cost + costGlass[glass.id] + (hardening ? costHardenin: 0) + (hiddHardware ? costhiddHardware: 0) + (montage ? costMontage: 0) + (delivery*costDelivery)))
     + Math.round((option0 ? Math.round(optionsArr[0].cost*widthWindow/1000):0) + (option1 ? Math.round(optionsArr[1].cost*widthWindow/1000):0) + (option2 ? Math.round(optionsArr[2].cost):0))
         )
 
     setInfoBlock(JSON.stringify({
         "name": customerName ,
         "email": customerMail ,
+        "emailManager" : emailManager,
         "typeWindow": typeWindow,
         "widthWindow": widthWindow,
         "heightWindow": heightWindow,
@@ -95,8 +96,8 @@ setCustomerMail(targetMail);
 
 
 let PaymentOffer =  useCallback( <div className={styles.userForm}>
-                    <input type="text" id="name" name="name" placeholder="Your name.." required value={customerName} onChange={(e)=> setTargetName(e.target.value)}  /><p/>
-                    <input type="email" id="email" name="email" placeholder="Your email.." required value={customerMail} onChange={(e)=> setTargetMail(e.target.value)}  /><p/>
+                    <input type="text" id="name" name="name" placeholder="Ваше имя.." required value={customerName} onChange={(e)=> setTargetName(e.target.value)}  /><p/>
+                    <input type="email" id="email" name="email" placeholder="Ваш email.." required value={customerMail} onChange={(e)=> setTargetMail(e.target.value)}  /><p/>
                     <div className={styles.PaymentBtn}>
                     <div  type="submit" value="Register" onClick={()=> setPaymentHide(2)  }><span >Получить консультацию</span></div>
                     </div>
@@ -118,8 +119,9 @@ let PaymentThanks = <div className={styles.userForm}>
 let PaymentErr = <div className={styles.userForm}>
 <form action="" method="post">
     <p>
+    
        <div> Внимание! Ваша заявка НЕ отправлена! Возникла ошибка!  </div>
-       <div> Пожалуйста, попробуйте позже или напишите на pletnevdn@gmail.com!   </div>
+       <div> Пожалуйста, попробуйте позже или напишите на {emailManager} !</div>
     </p>
 </form>
 </div>;
@@ -156,7 +158,7 @@ return (
             <div className={styles.calcPaymentContent}>
                 <div>
                     <p>Изделие:</p>
-                    <span >{Math.round((widthWindow/1000)*(heightWindow/1000)* ( profilesArr.profilesArr[profile.id].subProf[subProfile.id].cost + colorArr[multicolor.id].col[paint.id].cost + costGlass[glass.id] + (hardening ? costHardenin: 0) + (hiddHardware ? costhiddHardware: 0)))} ₽</span>
+                    <span >{Math.round((widthWindow/1000)*(heightWindow/1000)* ( profilesArr[profile.id].subProf[subProfile.id].cost + colorArr[multicolor.id].col[paint.id].cost + costGlass[glass.id] + (hardening ? costHardenin: 0) + (hiddHardware ? costhiddHardware: 0)))}</span>
                 </div>
                 <div>
                     <p>Опции:</p>
@@ -165,16 +167,16 @@ return (
                                 (option1 ? Math.round(optionsArr[1].cost*widthWindow/1000):0) // Подоконник
                                 +
                                 (option2 ? Math.round(optionsArr[2].cost):0) // Подоконник
-                            } ₽
+                            }
                     </span>
                 </div>
                 <div>
                     <p>Монтаж:</p>
-                    <span> {montage ? Math.round(costMontage*(widthWindow/1000)*(heightWindow/1000)): 0} ₽</span>
+                    <span> {montage ? Math.round(costMontage*(widthWindow/1000)*(heightWindow/1000)): 0}</span>
                 </div>
                 <div>
                     <p>Доставка:</p>
-                    <span>{Math.round(delivery*costDelivery)} ₽</span>
+                    <span>{Math.round(delivery*costDelivery)}</span>
                 </div>
             </div>
             {PaymentBtn}
