@@ -1,13 +1,14 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
 import styles from "./styles.module.css";
 import {useAppContext} from  "../../context/ContextProvider";
+import Validator from "validator";
 
 
 
 export default function Payment(){
 
 
-const  {profilesArr} =  useAppContext(); // Массив профилей
+const {profilesArr} =  useAppContext(); // Массив профилей
 const {emailManager} = useAppContext();
 
 let {typeWindow, toggleTypeWindow} = useAppContext(); // Сколько секций у окна
@@ -38,9 +39,11 @@ let [PaymentHide, setPaymentHide] = useState(1);
 let [BaseCost, setBaseCost] = useState(0);
 let [infoBlock, setInfoBlock] = useState();
 let [customerName, setCustomerName] = useState();
-let [customerMail, setCustomerMail] = useState()
+let [customerMail, setCustomerMail] = useState();
+let [customerPhone, setCustomerPhone] = useState();
 let [targetName, setTargetName] = useState(customerName);
 let [targetMail, setTargetMail] = useState(customerMail);
+let [targetPhone, setTargetPhone] = useState(customerPhone);
 
 let [PaymentBtn, setPaymentBtn] = useState("");
 useEffect(()=>{
@@ -68,9 +71,9 @@ setBaseCost(
         )
 
     setInfoBlock(JSON.stringify({
-        "name": customerName ,
-        "email": customerMail ,
-        "emailManager" : emailManager,
+        "name": customerName,
+        "email": customerMail,
+        "emailManager": emailManager,
         "typeWindow": typeWindow,
         "widthWindow": widthWindow,
         "heightWindow": heightWindow,
@@ -83,25 +86,44 @@ setBaseCost(
         "option2": option2? "Да": "Нет",
     }))
 
-}, [widthWindow, heightWindow, profile, subProfile, glass, hardening, hiddHardware, montage, delivery, option0, option1, option2, paint, multicolor, customerName, customerMail, PaymentHide]);
+}, [widthWindow, heightWindow, profile, subProfile, glass, hardening, hiddHardware, montage, delivery, option0, option1, option2, paint, multicolor, customerName, customerMail, customerPhone, PaymentHide]);
 
 
 
 useEffect(()=>{
 setCustomerName(targetName);
-setCustomerMail(targetMail);
-},[targetName,targetMail]);
+//console.log(customerName ? Validator.isEmail(customerName): false);
+},[ targetName]);
+
+useEffect(()=>{
+    setCustomerMail(targetMail);
+    //console.log(customerMail ? Validator.isEmail(customerMail): false);
+    },[targetMail]);
+
+useEffect(()=>{
+    setCustomerPhone(targetPhone);
+    //console.log(customerPhone ? Validator.isEmail(customerPhone): false);
+    },[targetPhone]);
 
 
-
-
-let PaymentOffer =  useCallback( <div className={styles.userForm}>
-                    <input type="text" id="name" name="name" placeholder="Ваше имя.." required value={customerName} onChange={(e)=> setTargetName(e.target.value)}  /><p/>
-                    <input type="email" id="email" name="email" placeholder="Ваш email.." required value={customerMail} onChange={(e)=> setTargetMail(e.target.value)}  /><p/>
-                    <div className={styles.PaymentBtn}>
-                    <div  type="submit" value="Register" onClick={()=> setPaymentHide(2)  }><span >Получить консультацию</span></div>
+let PaymentOffer =  <form  action={()=> setPaymentHide(2)  }>
+                    <div className={styles.userForm}>
+                        <input type="text" id="name" name="name" placeholder="Ваше имя.." required  /><p/>
+                        <input type="tel" id="phone" name="phone" placeholder="Ваше телефон.." required /><p/>
+                        <input type="email" id="email" name="email" placeholder="Ваш email.." required  /><p/>
+                        <div className={styles.PaymentBtn}><button  className={styles.button}  type="submit"><span >Получить консультацию</span></button></div>
                     </div>
-                    </div>);
+                    </form>;
+
+{/* <form action={()=> setPaymentHide(2)  }>
+                        <div className={styles.userForm}>
+                            <input type="text" id="name" name="name" placeholder="Ваше имя.." required value={customerName} onChange={(e)=> setTargetName(e.target.value)}  /><p/>
+                            <input type="tel" id="phone" name="phone" placeholder="Ваше телефон.." required value={customerPhone} onChange={(e)=>setTargetPhone(e.target.value)}  /><p/>
+                            <input type="email" id="email" name="email" placeholder="Ваш email.." required value={customerMail} onChange={(e)=> setTargetMail(e.target.value)}  /><p/>
+                            <div className={styles.PaymentBtn}>
+                            <div type="submit" value="Register" onClick={()=> setPaymentHide(2)  }><span >Получить консультацию</span></div></div>
+                        </div>
+                    </form>; */}
 
   let  PaymentLoader =   <div className={styles.userForm}>
                             <div style={{"margin": "0 auto", "width": "50px"}}><img src="/CalculatorJs/img/loader.gif" alt="Ждем ответа сервера" style={{"margin": "0 auto", "width": "50px"}}  /></div>
