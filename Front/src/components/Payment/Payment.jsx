@@ -1,7 +1,8 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import {useEffect, useState } from 'react';
 import styles from "./styles.module.css";
 import {useAppContext} from  "../../context/ContextProvider";
-import Validator from "validator";
+import { useForm } from "react-hook-form";
+
 
 
 
@@ -61,6 +62,13 @@ let Resend = (func) =>{
         if (coin===2) {func(); clearInterval(Dalay);  }    
     },100) };
 
+const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+      } = useForm();
+
 
 useEffect(()=>{
 let S = (widthWindow/1000)*(heightWindow/1000); // Площадь в метрах 
@@ -106,7 +114,10 @@ useEffect(()=>{
     },[targetPhone]);
 
 
-let PaymentOffer =  <form  action={()=> setPaymentHide(2)  }>
+const onSubmit = (data) => console.log(data)
+
+let PaymentOffer =   <form onSubmit={handleSubmit(onSubmit)}>        
+                    {/* "handleSubmit" проверит ваши входные данные перед вызовом команды" */}
                     <div className={styles.userForm}>
                         <input type="text" id="name" name="name" placeholder="Ваше имя.." required  /><p/>
                         <input type="tel" id="phone" name="phone" placeholder="Ваше телефон.." required /><p/>
@@ -114,6 +125,16 @@ let PaymentOffer =  <form  action={()=> setPaymentHide(2)  }>
                         <div className={styles.PaymentBtn}><button  className={styles.button}  type="submit"><span >Получить консультацию</span></button></div>
                     </div>
                     </form>;
+
+
+// let PaymentOffer =  <form  action={()=> setPaymentHide(2)  }>
+//                     <div className={styles.userForm}>
+//                         <input type="text" id="name" name="name" placeholder="Ваше имя.." required  /><p/>
+//                         <input type="tel" id="phone" name="phone" placeholder="Ваше телефон.." required /><p/>
+//                         <input type="email" id="email" name="email" placeholder="Ваш email.." required  /><p/>
+//                         <div className={styles.PaymentBtn}><button  className={styles.button}  type="submit"><span >Получить консультацию</span></button></div>
+//                     </div>
+//                     </form>;
 
 {/* <form action={()=> setPaymentHide(2)  }>
                         <div className={styles.userForm}>
@@ -202,5 +223,6 @@ return (
                 </div>
             </div>
             {PaymentBtn}
+
 </div>
 )};
