@@ -21,6 +21,7 @@ $option1 = $req->option1;
 $option2 = $req->option2;
 $email = $req->email;
 $name = $req->name;
+$phone = $req->phone;
 $emailManager = $req->emailManager;
 
 $title = 'Параметры заявки';
@@ -32,7 +33,9 @@ $body = "
         </head>
         <body>
             <div id='email-wrap' style='background: #0764c9; color: white; padding: 30px'>
-            <p> $name ( <a href='mailto:$email' style = 'color: #fff' >$email</a>),  спасибо за ваш выбор окна:
+            <p>Поступил заказ от $name 
+            Email: <a href='mailto:$email' style = 'color: #fff' >$email</a>
+            Телефон: <a href='tel:$phone' style = 'color: #fff' >$phone</a>
             <p>Количество секций: $typeWindow</p>
             <p>Ширина: $widthWindow</p>
             <p>Высота: $heightWindow</p>

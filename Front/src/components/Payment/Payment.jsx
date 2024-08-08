@@ -2,7 +2,8 @@ import {useEffect, useState } from 'react';
 import styles from "./styles.module.css";
 import {useAppContext} from  "../../context/ContextProvider";
 import { useForm } from "react-hook-form";
-
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
 
 
 
@@ -49,7 +50,7 @@ let [targetPhone, setTargetPhone] = useState(customerPhone);
 let [PaymentBtn, setPaymentBtn] = useState("");
 useEffect(()=>{
     if (PaymentHide === 1)  setPaymentBtn(PaymentOffer);
-    if (PaymentHide === 2 && customerMail)   Resend(handleClick);
+    if (PaymentHide === 2)   Resend(handleClick);
     if (PaymentHide === 3)  setPaymentBtn(PaymentThanks);
     if (PaymentHide === 4)  setPaymentBtn(PaymentErr);
 },[PaymentHide, customerMail])
@@ -62,12 +63,6 @@ let Resend = (func) =>{
         if (coin===2) {func(); clearInterval(Dalay);  }    
     },100) };
 
-const {
-        register,
-        handleSubmit,
-        watch,
-        formState: { errors },
-      } = useForm();
 
 
 useEffect(()=>{
@@ -81,6 +76,7 @@ setBaseCost(
     setInfoBlock(JSON.stringify({
         "name": customerName,
         "email": customerMail,
+        "phone" : customerPhone,
         "emailManager": emailManager,
         "typeWindow": typeWindow,
         "widthWindow": widthWindow,
@@ -99,52 +95,46 @@ setBaseCost(
 
 
 useEffect(()=>{
-setCustomerName(targetName);
-//console.log(customerName ? Validator.isEmail(customerName): false);
-},[ targetName]);
-
-useEffect(()=>{
-    setCustomerMail(targetMail);
-    //console.log(customerMail ? Validator.isEmail(customerMail): false);
-    },[targetMail]);
-
-useEffect(()=>{
-    setCustomerPhone(targetPhone);
-    //console.log(customerPhone ? Validator.isEmail(customerPhone): false);
-    },[targetPhone]);
+    setCustomerName(customerName);
+    setCustomerMail(customerMail);
+    setCustomerPhone(customerPhone);
+    if (customerName && customerMail && customerPhone) {setPaymentHide(2)} else setPaymentHide(1);
+console.log(customerName,customerMail, customerPhone);
+},[ customerName,customerMail, customerPhone ]);
 
 
-const onSubmit = (data) => console.log(data)
+const schema = yup // Валидация
+    .object({
+      name: yup.string().required(),
+      tel: yup.number().positive().integer().required(),
+      email: yup.string().email().required()
+    })
+    .required()
+
+const { // К форме
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+      } = useForm({
+        resolver: yupResolver(schema),
+      });
+
+const onSubmit = (data) => {
+    setCustomerName(data.name);
+    setCustomerMail(data.email);
+    setCustomerPhone(data.tel);
+    }
 
 let PaymentOffer =   <form onSubmit={handleSubmit(onSubmit)}>        
                     {/* "handleSubmit" проверит ваши входные данные перед вызовом команды" */}
                     <div className={styles.userForm}>
-                        <input type="text" id="name" name="name" placeholder="Ваше имя.." required  /><p/>
-                        <input type="tel" id="phone" name="phone" placeholder="Ваше телефон.." required /><p/>
-                        <input type="email" id="email" name="email" placeholder="Ваш email.." required  /><p/>
+                        <input type="text"  {...register("name", { required: true })} placeholder="Ваше имя" /><p/>
+                        <input type="tel" pattern="[+]{1}[7]{1}[0-9]{3}[0-9]{3}[0-9]{2}[0-9]{2}"  {...register("tel", { required: true })}  placeholder="Телефон +79005004030" /><p/>
+                        <input type='email' pattern="[A-Za-z]{*}[@][A-Za-z]{*}[.][A-Za-z]{*}" {...register("email", { required: true })} placeholder="Электронная почта" /><p/>
                         <div className={styles.PaymentBtn}><button  className={styles.button}  type="submit"><span >Получить консультацию</span></button></div>
                     </div>
                     </form>;
-
-
-// let PaymentOffer =  <form  action={()=> setPaymentHide(2)  }>
-//                     <div className={styles.userForm}>
-//                         <input type="text" id="name" name="name" placeholder="Ваше имя.." required  /><p/>
-//                         <input type="tel" id="phone" name="phone" placeholder="Ваше телефон.." required /><p/>
-//                         <input type="email" id="email" name="email" placeholder="Ваш email.." required  /><p/>
-//                         <div className={styles.PaymentBtn}><button  className={styles.button}  type="submit"><span >Получить консультацию</span></button></div>
-//                     </div>
-//                     </form>;
-
-{/* <form action={()=> setPaymentHide(2)  }>
-                        <div className={styles.userForm}>
-                            <input type="text" id="name" name="name" placeholder="Ваше имя.." required value={customerName} onChange={(e)=> setTargetName(e.target.value)}  /><p/>
-                            <input type="tel" id="phone" name="phone" placeholder="Ваше телефон.." required value={customerPhone} onChange={(e)=>setTargetPhone(e.target.value)}  /><p/>
-                            <input type="email" id="email" name="email" placeholder="Ваш email.." required value={customerMail} onChange={(e)=> setTargetMail(e.target.value)}  /><p/>
-                            <div className={styles.PaymentBtn}>
-                            <div type="submit" value="Register" onClick={()=> setPaymentHide(2)  }><span >Получить консультацию</span></div></div>
-                        </div>
-                    </form>; */}
 
   let  PaymentLoader =   <div className={styles.userForm}>
                             <div style={{"margin": "0 auto", "width": "50px"}}><img src="/CalculatorJs/img/loader.gif" alt="Ждем ответа сервера" style={{"margin": "0 auto", "width": "50px"}}  /></div>
