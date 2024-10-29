@@ -62,7 +62,7 @@ $mail->Port = 465;
 $mail->Username = $config['username'];
 $mail->Password = $config['password'];
 $mail->SMTPSecure = 'ssl';
-$mail->setFrom('PletnevDN.corp@yandex.ru', 'Дмитрий');
+$mail->setFrom('pletnevdn@gmail.com', 'Дмитрий');
 
 $mail->addAddress($email);
 $mail->addAddress($emailManager);
