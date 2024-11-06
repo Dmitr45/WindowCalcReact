@@ -67,7 +67,7 @@ $mail->setFrom('noreply@evoplast.ru', 'EvoPlast');
 
 
 // $mail->addAddress($email);
-$mail->addAddress('resens@yandex.ru');
+$mail->addAddress('noreply@evoplast.ru');
 $mail->isHTML(true);
 $mail->Subject = $title;
 $mail->Body = $body;
