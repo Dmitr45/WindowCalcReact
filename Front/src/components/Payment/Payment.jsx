@@ -2,6 +2,7 @@ import {useEffect, useState } from 'react';
 import styles from "./styles.module.css";
 import {useAppContext} from  "../../context/ContextProvider";
 import { useForm } from "react-hook-form";
+import { InputMask } from "react-input-mask";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 
@@ -107,7 +108,8 @@ const schema = yup // Валидация
     .object({
       name: yup.string().required(),
       tel: yup.number().positive().integer().required(),
-      email: yup.string().email().required()
+      email: yup.string().email(),
+      tel: yup.string().matches(/^[+.]?[7-8]?[ -.]?\(?([2-9][0-9]{2})\)?[ -.]?([2-9][0-9]{2})[ -.]?([0-9]{4})$/),
     })
     .required()
 
@@ -122,7 +124,7 @@ const { // К форме
 
 const onSubmit = (data) => {
     setCustomerName(data.name);
-    setCustomerMail(data.email);
+    setCustomerMail("noMail@noMail.ru"); //data.email);
     setCustomerPhone(data.tel);
     }
 
@@ -130,8 +132,9 @@ let PaymentOffer =   <form onSubmit={handleSubmit(onSubmit)}>
                     {/* "handleSubmit" проверит ваши входные данные перед вызовом команды" */}
                     <div className={styles.userForm}>
                         <input type="text"  {...register("name", { required: true })} placeholder="Ваше имя" /><p/>
-                        <input type="tel" pattern="[+]{1}[7]{1}[0-9]{3}[0-9]{3}[0-9]{2}[0-9]{2}"  {...register("tel", { required: true })}  placeholder="Телефон +79005004030" /><p/>
-                        <input type='email' pattern="[A-Za-z]{*}[@][A-Za-z]{*}[.][A-Za-z]{*}" {...register("email", { required: true })} placeholder="Электронная почта" /><p/>
+                        <input type="tel" pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"  {...register("tel", { required: true })}  placeholder="+7 (___) ___ __ __" /><p/>
+
+                        {/* <input type='email' pattern="[A-Za-z]{*}[@][A-Za-z]{*}[.][A-Za-z]{*}" {...register("email", { required: true })} placeholder="Электронная почта" /><p/> */}
                         <div className={styles.PaymentBtn}><button  className={styles.button}  type="submit"><span >Получить консультацию</span></button></div>
                     </div>
                     </form>;
@@ -143,8 +146,7 @@ let PaymentOffer =   <form onSubmit={handleSubmit(onSubmit)}>
 let PaymentThanks = <div className={styles.userForm}>
 <form action="" method="post">
     <p>
-       <div> Спасибо! Ваша заявка отправлена! Вам на почту придет сообщение.  </div>
-       <div> Не забудьте проверить папку "Спам"   </div>
+       <div> Ваша заявка успешно отправлена, мы перезвоним в ближайшее время.  </div>
     </p>
 </form>
 </div>;
@@ -153,8 +155,8 @@ let PaymentErr = <div className={styles.userForm}>
 <form action="" method="post">
     <p>
     
-       <div> Внимание! Ваша заявка НЕ отправлена! Возникла ошибка!  </div>
-       <div> Пожалуйста, попробуйте позже или напишите на {emailManager} !</div>
+       <div> Ошибка при отправке заявки!  </div>
+       <div> Пожалуйста, напишите на почту {emailManager} !</div>
     </p>
 </form>
 </div>;

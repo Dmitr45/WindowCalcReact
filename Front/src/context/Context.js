@@ -60,6 +60,7 @@ const profilesArr = DATA[9].profilesArr ||
         }]
     }
 ];
+//console.log("profilesArr:   " +  profilesArr[0].subProf[0].cost + "    "  + profilesArr[0].subProf[1].cost);
 const colorArr =  DATA[10].colorArr ||
     [{  id:0,
         name: "Одноцветная",
@@ -115,7 +116,7 @@ const optionsArr =  DATA[11].optionsArr ||
     }
 ];
 
-const emailManager = DATA[12].mailManager || "pletnevdn@gmail.com";
+const emailManager = DATA[12].emailManager || "pletnevdn@gmail.com";
 
 // Контекст для приложения ====================================================================================================
 

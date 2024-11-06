@@ -1,6 +1,6 @@
 [
 	{
-	  "HeaderText": "Загрузили файл DATA 28.07.2024"
+	  "HeaderText": "Загрузили файл DATA 06.11.2024"
 	},
 	{
 	  "maxWindowSash": 4
@@ -39,7 +39,7 @@
 			{
 			  "id": 0,
 			  "name": "Masterline 8",
-			  "cost": 30000,
+			  "cost": 1,
 			  "thermalProtection": 25,
 			  "lightProtection": 30,
 			  "soundProtection": 15
@@ -47,7 +47,7 @@
 			{
 			  "id": 1,
 			  "name": "Slim Line 38",
-			  "cost": 32000,
+			  "cost": 1000,
 			  "thermalProtection": 78,
 			  "lightProtection": 55,
 			  "soundProtection": 90
@@ -61,7 +61,7 @@
 			{
 			  "id": 0,
 			  "name": "W62",
-			  "cost": 22000,
+			  "cost": 2000,
 			  "thermalProtection": 30,
 			  "lightProtection": 20,
 			  "soundProtection": 10
@@ -69,7 +69,7 @@
 			{
 			  "id": 1,
 			  "name": "W72",
-			  "cost": 26000,
+			  "cost": 2000,
 			  "thermalProtection": 75,
 			  "lightProtection": 95,
 			  "soundProtection": 63
@@ -141,6 +141,6 @@
 	  ]
 	},
 	{
-	  "emailManager": "Pletnevdn@gmail.com"
+	  "emailManager": "sale@evoplast.ru"
 	}
   ]
