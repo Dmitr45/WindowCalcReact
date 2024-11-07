@@ -1,129 +1,243 @@
 import { useState, useCallback, useEffect, useMemo } from 'react';
-import DATA from "./data.json";
-
-
-
 
 
 
 
 export const useCreateAppContext = function(props) {
 
-    const DaTa = useMemo(()=>{
-        let data = '';
-    fetch('./CalculatorJs/data.json')
-        .then(response => response.json())
-        .then(json => data =  json); 
-        
-        return data
-   });
-console.log(DaTa);
-// Входные данные: ============================================================================================================
-
-const maxWindowSash =  DATA[1].maxWindowSash || 4; //  Максимальное кол-во створок
-const maxWidthSash = DATA[2].maxWidthSash || 800; // Макс ширина створки
-const maxHeightSash = DATA[3].maxHeightSash || 2200; // Макс высота створки
-const costGlass = DATA[4].costGlass || [0, 2000, 2500]; // Стоимость стеклопакета 0, одинарного и двойного остекления
-const costHardenin = DATA[5].costHardenin || 1000; // Стоимость закалки
-const costhiddHardware = DATA[6].costhiddHardware || 1000; // Скрытая фурнитура
-const costMontage = DATA[7].costMontage || 3000; // Монтаж
-const costDelivery = DATA[8].costDelivery || 120; // Доставка руб/км
-const profilesArr = DATA[9].profilesArr || 
-    [{  id:0, 
-        name: "Reynaers",
-        subProf: [{
-            id:0, 
-            name: "Masterline 8",
-            cost: 30000, 
-            thermalProtection : 30,
-            lightProtection : 20,
-            soundProtection : 10
-        },
-        {   id:1,
-            name: "Slim Line 38",
-            cost: 32000,
-            thermalProtection : 95,
-            lightProtection : 50,
-            soundProtection : 56
-        }]
-    }, 
-    {   id:1, 
-        name: "Alutech",
-        subProf: [{
-            id:0,
-            name: "W62",
-            cost: 22000,
-            thermalProtection : 30,
-            lightProtection : 20,
-            soundProtection : 10
-        },
-        {
-            id:1,
-            name: "W72",
-            cost: 26000,
-            thermalProtection : 60,
-            lightProtection : 50,
-            soundProtection : 70 
-        }]
-    }
-];
-//console.log("profilesArr:   " +  profilesArr[0].subProf[0].cost + profilesArr[0].subProf[1].cost);
-const colorArr =  DATA[10].colorArr ||
-    [{  id:0,
-        name: "Одноцветная",
-        col: [{
-            id:0,
-            name: "RAL Глянец",
-            cost: 0
-        },
-        {
-            id:1,
-            name: "RAL Муар",
-            cost: 500  
-        },
-        {
-            id:2,
-            name: "Decoral",
-            cost: 4000 
+    const [maxWindowSash, setMaxWindowSash] = useState(4); //  Максимальное кол-во створок
+    const [maxWidthSash, setMaxWidthSash] = useState(800); // Макс ширина створки
+    const [maxHeightSash, setMaxHeightSash] = useState(2200); // Макс высота створки
+    const [costGlass, setCostGlass] = useState([0, 2000, 2500]); // Стоимость стеклопакета 0, одинарного и двойного остекления
+    const [costHardenin, setCostHardenin] = useState(1000); // Стоимость закалки
+    const [costhiddHardware, setCosthiddHardware] = useState(1000); // Скрытая фурнитура
+    const [costMontage, setCostMontage] = useState(3000); // Монтаж
+    const [costDelivery, setCostDelivery] = useState(120); // Доставка руб/км
+    const [profilesArr, setProfilesArr] = useState(// Профиль
+        [{  id:0, 
+            name: "Reynaers",
+            subProf: [{
+                id:0, 
+                name: "Masterline 8",
+                cost: 30000, 
+                thermalProtection : 30,
+                lightProtection : 20,
+                soundProtection : 10
+            },
+            {   id:1,
+                name: "Slim Line 38",
+                cost: 32000,
+                thermalProtection : 95,
+                lightProtection : 50,
+                soundProtection : 56
+            }]
+        }, 
+        {   id:1, 
+            name: "Alutech",
+            subProf: [{
+                id:0,
+                name: "W62",
+                cost: 22000,
+                thermalProtection : 30,
+                lightProtection : 20,
+                soundProtection : 10
+            },
+            {
+                id:1,
+                name: "W72",
+                cost: 26000,
+                thermalProtection : 60,
+                lightProtection : 50,
+                soundProtection : 70 
+            }]
         }
+    ]) 
+    const [colorArr, setColorArr]  = useState(  // свойства профилей в цветной диаграмме
+        [{  id:0,
+            name: "Одноцветная",
+            col: [{
+                id:0,
+                name: "RAL Глянец",
+                cost: 0
+            },
+            {
+                id:1,
+                name: "RAL Муар",
+                cost: 500  
+            },
+            {
+                id:2,
+                name: "Decoral",
+                cost: 4000 
+            }
+            ]
+        }, 
+        {   id:1,
+            name: "Двухцветная",
+            col: [{
+                id:0,
+                name: "RAL Глянец",
+                cost: 1000
+            },
+            {
+                id:1,
+                name: "RAL Муар",
+                cost: 1500  
+            },
+            {
+                id:2,
+                name: "Decoral",
+                cost: 5000 
+            }]
+        }
+    ]
+    ) 
+    const [optionsArr, setOptionsArr] =  useState( // Дополнительные опции
+        [
+            {name: "Отлив",
+                cost: 200 // м погонный
+            },
+            {
+            name: "Подоконник",
+            cost: 300  // м погонный
+            },
+            {
+            name: "Антимоскитная сетка",
+            cost: 3000 // шт
+            }
         ]
-    }, 
-    {   id:1,
-        name: "Двухцветная",
-        col: [{
-            id:0,
-            name: "RAL Глянец",
-            cost: 1000
-        },
-        {
-            id:1,
-            name: "RAL Муар",
-            cost: 1500  
-        },
-        {
-            id:2,
-            name: "Decoral",
-            cost: 5000 
-        }]
-    }
-];
+        )
+    const [emailManager, setEmailManager]  = useState("pletnevdn@gmail.com");
 
-const optionsArr =  DATA[11].optionsArr ||
-[
-    {name: "Отлив",
-        cost: 200 // м погонный
-    },
-    {
-    name: "Подоконник",
-    cost: 300  // м погонный
-    },
-    {
-    name: "Антимоскитная сетка",
-    cost: 3000 // шт
-    }
-];
+// Входные данные из JSON: ============================================================================================================
+    useEffect(() => {
+    fetch('/CalculatorJs/data.json')
+        .then(response => response.json())
+        .then(data => {
+            setMaxWindowSash(data[1].maxWindowSash);
+            setMaxWidthSash(data[2].maxWidthSash);
+            setMaxHeightSash(data[3].maxHeightSash);
+            setCostGlass(data[4].costGlass);
+            setCostHardenin(data[5].costHardenin);
+            setCosthiddHardware(data[6].costhiddHardware);
+            setCostMontage(data[7].costMontage);
+            setCostDelivery(data[8].costDelivery);
+            setProfilesArr(data[9].profilesArr);
+            setColorArr(data[10].colorArr);
+            setOptionsArr(data[11].optionsArr);
+            setEmailManager(data[12].mailManager);
+        console.log("Версия json файла: " + data[0].HeaderText)
+        })
+        .catch(error => console.error(error));
+    }, []);
 
-const emailManager = DATA[12].mailManager || "pletnevdn@gmail.com";
+
+
+
+// const maxWindowSash =  DATA[1].maxWindowSash || 4; //  Максимальное кол-во створок
+// const maxWidthSash = DATA[2].maxWidthSash || 800; // Макс ширина створки
+// const maxHeightSash = DATA[3].maxHeightSash || 2200; // Макс высота створки
+// const costGlass = DATA[4].costGlass || [0, 2000, 2500]; // Стоимость стеклопакета 0, одинарного и двойного остекления
+// const costHardenin = DATA[5].costHardenin || 1000; // Стоимость закалки
+// const costhiddHardware = DATA[6].costhiddHardware || 1000; // Скрытая фурнитура
+// const costMontage = DATA[7].costMontage || 3000; // Монтаж
+// const costDelivery = DATA[8].costDelivery || 120; // Доставка руб/км
+// const profilesArr = DATA[9].profilesArr || 
+//     [{  id:0, 
+//         name: "Reynaers",
+//         subProf: [{
+//             id:0, 
+//             name: "Masterline 8",
+//             cost: 30000, 
+//             thermalProtection : 30,
+//             lightProtection : 20,
+//             soundProtection : 10
+//         },
+//         {   id:1,
+//             name: "Slim Line 38",
+//             cost: 32000,
+//             thermalProtection : 95,
+//             lightProtection : 50,
+//             soundProtection : 56
+//         }]
+//     }, 
+//     {   id:1, 
+//         name: "Alutech",
+//         subProf: [{
+//             id:0,
+//             name: "W62",
+//             cost: 22000,
+//             thermalProtection : 30,
+//             lightProtection : 20,
+//             soundProtection : 10
+//         },
+//         {
+//             id:1,
+//             name: "W72",
+//             cost: 26000,
+//             thermalProtection : 60,
+//             lightProtection : 50,
+//             soundProtection : 70 
+//         }]
+//     }
+// ];
+// //console.log("profilesArr:   " +  profilesArr[0].subProf[0].cost + profilesArr[0].subProf[1].cost);
+// const colorArr =  DATA[10].colorArr ||
+//     [{  id:0,
+//         name: "Одноцветная",
+//         col: [{
+//             id:0,
+//             name: "RAL Глянец",
+//             cost: 0
+//         },
+//         {
+//             id:1,
+//             name: "RAL Муар",
+//             cost: 500  
+//         },
+//         {
+//             id:2,
+//             name: "Decoral",
+//             cost: 4000 
+//         }
+//         ]
+//     }, 
+//     {   id:1,
+//         name: "Двухцветная",
+//         col: [{
+//             id:0,
+//             name: "RAL Глянец",
+//             cost: 1000
+//         },
+//         {
+//             id:1,
+//             name: "RAL Муар",
+//             cost: 1500  
+//         },
+//         {
+//             id:2,
+//             name: "Decoral",
+//             cost: 5000 
+//         }]
+//     }
+// ];
+
+// const optionsArr =  DATA[11].optionsArr ||
+// [
+//     {name: "Отлив",
+//         cost: 200 // м погонный
+//     },
+//     {
+//     name: "Подоконник",
+//     cost: 300  // м погонный
+//     },
+//     {
+//     name: "Антимоскитная сетка",
+//     cost: 3000 // шт
+//     }
+// ];
+
+// const emailManager = DATA[12].mailManager || "pletnevdn@gmail.com";
 
 // Контекст для приложения ====================================================================================================
 

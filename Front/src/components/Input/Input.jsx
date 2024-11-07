@@ -234,7 +234,7 @@ return (
             {/* Доставка */}
             <div className={styles.L}>
                             <p>Доставка</p>
-                            <div >
+                            <div>
                                 <div>
                                     <input key={5} type="radio" id="no" name="Delivery" value={true} checked={ hidDiv ? true : false } onChange={(e)=>{setHidDiv(true)}} />
                                     <label htmlFor="huey">Не нужна</label>
