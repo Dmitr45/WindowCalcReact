@@ -98,7 +98,7 @@ let [hidDiv, setHidDiv] = useState(true);
 useEffect(()=>{
 if ( !hidDiv) { setNumberDeliveDiv( <div><p>Расстояние доставки, км </p>
                             <div className={styles.selectDiv}>
-                                <input min="0" type="number" className={styles.selectNum} value={tempDelivery}  onChange={(e)=>{setTempDelivery(e.target.value)}}  placeholder="Без доставки" />
+                                <input key={1} min="0" type="number" className={styles.selectNum} value={tempDelivery}  onChange={(e)=>{setTempDelivery(e.target.value)}}  placeholder="Без доставки" />
                                 <span>км</span>
                             </div>
                         </div>)
@@ -117,14 +117,14 @@ return (
                 <div className={styles.L}>
                             <p>Высота, мм </p>
                             <div className={styles.selectDiv}>
-                                <input type="number" className={styles.selectNum} value={heightWindow} onChange={(e)=>{toggleHeightWindow(e.target.value)}}  />
+                                <input  key={1} type="number" className={styles.selectNum} value={heightWindow} onChange={(e)=>{toggleHeightWindow(e.target.value)}}  />
                                 <span>мм</span>
                             </div>
                 </div>
                 <div className={styles.R}>
                 <p>Ширина, мм</p>
                             <div className={styles.selectDiv}>
-                                <input type="number" className={styles.selectNum}  value={widthWindow} onChange={(e)=>{toggleWidthWindow(e.target.value)}}/>
+                                <input key={13} type="number" className={styles.selectNum}  value={widthWindow} onChange={(e)=>{toggleWidthWindow(e.target.value)}}/>
                                 <span>мм</span>
                             </div>
                 </div>
@@ -219,12 +219,12 @@ return (
                             <p>Фурнитура</p>
                             <div >
                                 <div>
-                                    <input type="radio" id="no" name="Hardware" value="Видимая" checked={ hiddHardware === false ? true : false} onChange={(e)=>{setHiddHardwareTarget(e.target.value)}} />
-                                    <label for="huey">Видимая</label>
+                                    <input key={3} type="radio" id="no" name="Hardware" value="Видимая" checked={ hiddHardware === false ? true : false} onChange={(e)=>{setHiddHardwareTarget(e.target.value)}} />
+                                    <label htmlFor="huey">Видимая</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="yes" name="Hardware" value="Скрытая" checked={ hiddHardware === true ? true : false} onChange={(e)=>{setHiddHardwareTarget(e.target.value)}} />
-                                    <label for="huey">Скрытая</label>
+                                    <input key={4} type="radio" id="yes" name="Hardware" value="Скрытая" checked={ hiddHardware === true ? true : false} onChange={(e)=>{setHiddHardwareTarget(e.target.value)}} />
+                                    <label htmlFor="huey">Скрытая</label>
                                 </div>
 
                             </div>
@@ -236,12 +236,12 @@ return (
                             <p>Доставка</p>
                             <div >
                                 <div>
-                                    <input type="radio" id="no" name="Delivery" value={true} checked={ hidDiv ? true : false } onChange={(e)=>{setHidDiv(true)}} />
-                                    <label for="huey">Не нужна</label>
+                                    <input key={5} type="radio" id="no" name="Delivery" value={true} checked={ hidDiv ? true : false } onChange={(e)=>{setHidDiv(true)}} />
+                                    <label htmlFor="huey">Не нужна</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="yes" name="Delivery" value={false} checked={!hidDiv ? true : false} onChange={(e)=>{setHidDiv(false)}} />
-                                    <label for="huey">Нужна</label>
+                                    <input key={6} type="radio" id="yes" name="Delivery" value={false} checked={!hidDiv ? true : false} onChange={(e)=>{setHidDiv(false)}} />
+                                    <label htmlFor="huey">Нужна</label>
                                 </div>
                             </div>
                             {numberDeliveDiv}
@@ -251,12 +251,12 @@ return (
                             <p>Монтаж</p>
                             <div >
                                 <div>
-                                    <input type="radio" id="no" name="Montage" value="Нет" checked={ montage === false ? true : false} onChange={(e)=>{setMontageTarget(e.target.value)}} />
-                                    <label for="huey">Не нужен</label>
+                                    <input key={7} type="radio" id="no" name="Montage" value="Нет" checked={ montage === false ? true : false} onChange={(e)=>{setMontageTarget(e.target.value)}} />
+                                    <label htmlFor="huey">Не нужен</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="yes" name="Montage" value="Да" checked={ montage === true ? true : false} onChange={(e)=>{setMontageTarget(e.target.value)}} />
-                                    <label for="huey">Нужен</label>
+                                    <input key={8} type="radio" id="yes" name="Montage" value="Да" checked={ montage === true ? true : false} onChange={(e)=>{setMontageTarget(e.target.value)}} />
+                                    <label htmlFor="huey">Нужен</label>
                                 </div>
                             </div>
                 </div>
@@ -269,26 +269,26 @@ return (
                     <div className={styles.R}>
                     <p>Дополнительные опции</p>
                     <div>
-                        <input type="checkbox" name={optionsArr[0].name} 
+                        <input key={9} type="checkbox" name={optionsArr[0].name} 
                         checked={option0}
                         value={!option0 ? true: false}
                         onChange={(e)=>toggleOption0(!option0)}
                                  />
-                                <label for={optionsArr[0].name}>{optionsArr[0].name} </label>
+                                <label htmlFor={optionsArr[0].name}>{optionsArr[0].name} </label>
                         <p/>
-                        <input type="checkbox" name={optionsArr[1].name} 
+                        <input key={10} type="checkbox" name={optionsArr[1].name} 
                         checked={option1}
                         value={!option1 ? true: false}
                         onChange={(e)=>toggleOption1(!option1)}
                                  />
-                                <label for={optionsArr[1].name}>{optionsArr[1].name} </label>
+                                <label htmlFor={optionsArr[1].name}>{optionsArr[1].name} </label>
                         <p/>
-                        <input type="checkbox" name={optionsArr[2].name} 
+                        <input key={11} type="checkbox" name={optionsArr[2].name} 
                         checked={option2}
                         value={!option2 ? true: false}
                         onChange={(e)=>toggleOption2(!option2)}
                                  />
-                                <label for={optionsArr[2].name}>{optionsArr[2].name} </label>
+                                <label htmlFor={optionsArr[2].name}>{optionsArr[2].name} </label>
                         <p/>       
                         </div>
                     </div>

@@ -27,13 +27,13 @@ return (
                                 <div className={styles.redBold} style={{"width": percent[0] + "%"}}></div>
                             </div>
                         </div>
-                        <div class={styles.item}>
+                        <div className={styles.item}>
                             <img src="/CalculatorJs/img/san.png" alt=""/>
                             <div className={styles.yellow}>
                                 <div className={styles.yellowBold} style={{"width": percent[1] + "%"}}></div>
                             </div>
                         </div>
-                        <div class={styles.item}>
+                        <div className={styles.item}>
                             <img src="/CalculatorJs/img/volume.png" alt=""/>
                             <div className={styles.green} >
                                 <div className={styles.greenBold} style={{"width": percent[2] + "%"}}></div>

@@ -100,7 +100,7 @@ useEffect(()=>{
     setCustomerMail(customerMail);
     setCustomerPhone(customerPhone);
     if (customerName && customerMail && customerPhone) {setPaymentHide(2)} else setPaymentHide(1);
-console.log(customerName,customerMail, customerPhone);
+//console.log(customerName,customerMail, customerPhone);
 },[ customerName,customerMail, customerPhone ]);
 
 
@@ -131,8 +131,8 @@ const onSubmit = (data) => {
 let PaymentOffer =   <form onSubmit={handleSubmit(onSubmit)}>        
                     {/* "handleSubmit" проверит ваши входные данные перед вызовом команды" */}
                     <div className={styles.userForm}>
-                        <input type="text"  {...register("name", { required: true })} placeholder="Ваше имя" /><p/>
-                        <input type="tel" pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"  {...register("tel", { required: true })}  placeholder="+7 (___) ___ __ __" /><p/>
+                        <input key={1} type="text"  {...register("name", { required: true })} placeholder="Ваше имя" /><p/>
+                        <input key={2} type="tel" pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"  {...register("tel", { required: true })}  placeholder="+7 (___) ___ __ __" /><p/>
 
                         {/* <input type='email' pattern="[A-Za-z]{*}[@][A-Za-z]{*}[.][A-Za-z]{*}" {...register("email", { required: true })} placeholder="Электронная почта" /><p/> */}
                         <div className={styles.PaymentBtn}><button  className={styles.button}  type="submit"><span >Получить консультацию</span></button></div>

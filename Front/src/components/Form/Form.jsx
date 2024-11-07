@@ -29,14 +29,14 @@ export default function Form(){
         /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* register your input into the hook by invoking the "register" function */}
-          <input defaultValue="test" {...register("example")} />
+          <input key={1} defaultValue="test" {...register("example")} />
     
           {/* include validation with required or other standard HTML validation rules */}
-          <input {...register("exampleRequired", { required: true })} />
+          <input key={2} {...register("exampleRequired", { required: true })} />
           {/* errors will return when field validation fails  */}
           {errors.exampleRequired && <span>This field is required</span>}
     
-          <input type="submit" />
+          <input key={3} type="submit" />
         </form>
       )
 }

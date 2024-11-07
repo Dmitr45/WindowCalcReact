@@ -17,24 +17,24 @@ if (widthWindow/maxWidthSash > 3  && maxWindowSash >= 4) {toggleTypeWindow(4)};
  }, [widthWindow]);
 
 
-let Item1 =  ()=>  {return  (<div class={typeWindow !== 1 ? styles.item : styles.itemSelect} onClick={()=>{ toggleWidthWindow(maxWidthSash) }}>
+let Item1 =  ()=>  {return  (<div className={typeWindow !== 1 ? styles.item : styles.itemSelect} onClick={()=>{ toggleWidthWindow(maxWidthSash) }}>
                     <img src="/CalculatorJs/img/prime1.png" alt=""/>
                     <p>Одностворчатое</p>
                 </div>)}
 
 
-let Item2 =  ()=>  {return  (  <div class={typeWindow !== 2 ? styles.item : styles.itemSelect} onClick={()=>{ toggleWidthWindow(maxWidthSash*2)}}>
+let Item2 =  ()=>  {return  (  <div className={typeWindow !== 2 ? styles.item : styles.itemSelect} onClick={()=>{ toggleWidthWindow(maxWidthSash*2)}}>
                                     <img src="/CalculatorJs/img/prime2.png" alt=""/>
                                     <p>Двустворчатое</p>
                                     </div>)}
 
-let Item3 =  ()=>  {return  (      <div class={typeWindow !== 3 ? styles.item : styles.itemSelect} onClick={()=>{ toggleWidthWindow(maxWidthSash*3)}}>
+let Item3 =  ()=>  {return  (      <div className={typeWindow !== 3 ? styles.item : styles.itemSelect} onClick={()=>{ toggleWidthWindow(maxWidthSash*3)}}>
                                         <img src="/CalculatorJs/img/prime3.png" alt=""/>
                                         <p>Трехстворчатое</p>
                                         </div>)}
 
 
-let Item4 =  ()=>  {return  (  <div class={typeWindow !== 4 ? styles.item : styles.itemSelect} onClick={()=>{ toggleWidthWindow(maxWidthSash*4)}}>
+let Item4 =  ()=>  {return  (  <div className={typeWindow !== 4 ? styles.item : styles.itemSelect} onClick={()=>{ toggleWidthWindow(maxWidthSash*4)}}>
                             <img src="/CalculatorJs/img/prime4.png" alt=""/>
                             <p>Четырехстворчатое</p>
                             </div>)}

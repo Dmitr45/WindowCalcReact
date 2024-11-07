@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import DATA from "./data.json";
 
 
@@ -9,11 +9,17 @@ import DATA from "./data.json";
 
 export const useCreateAppContext = function(props) {
 
-    fetch('./data.json')
-    .then(response => console.log(response));
-
+    const DaTa = useMemo(()=>{
+        let data = '';
+    fetch('./CalculatorJs/data.json')
+        .then(response => response.json())
+        .then(json => data =  json); 
+        
+        return data
+   });
+console.log(DaTa);
 // Входные данные: ============================================================================================================
-useEffect(()=>{console.log(DATA[0].HeaderText);},[]);
+
 const maxWindowSash =  DATA[1].maxWindowSash || 4; //  Максимальное кол-во створок
 const maxWidthSash = DATA[2].maxWidthSash || 800; // Макс ширина створки
 const maxHeightSash = DATA[3].maxHeightSash || 2200; // Макс высота створки
